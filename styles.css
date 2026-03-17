@@ -1,27 +1,70 @@
 /* ==========================================================================
+   设计系统变量
+   ========================================================================== */
+:root {
+    /* 字体大小系统 - 使用 rem 统一 */
+    --font-xs: 0.75rem;      /* 12px */
+    --font-sm: 0.8125rem;    /* 13px */
+    --font-base: 0.875rem;   /* 14px */
+    --font-md: 1rem;         /* 16px */
+    --font-lg: 1.25rem;      /* 20px */
+    --font-xl: 1.5rem;       /* 24px */
+    --font-2xl: 1.75rem;     /* 28px */
+    
+    /* 行高系统 */
+    --leading-tight: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.75;
+    
+    /* 间距系统 - 8px 基准 */
+    --space-1: 0.25rem;      /* 4px */
+    --space-2: 0.5rem;       /* 8px */
+    --space-3: 0.75rem;      /* 12px */
+    --space-4: 1rem;         /* 16px */
+    --space-5: 1.25rem;      /* 20px */
+    --space-6: 1.5rem;       /* 24px */
+    --space-8: 2rem;         /* 32px */
+    --space-10: 2.5rem;      /* 40px */
+    
+    /* 颜色系统 */
+    --color-primary: #409EFF;
+    --color-primary-dark: #2563eb;
+    --color-text-main: #2c3e50;
+    --color-text-heading: #1e293b;
+    --color-text-body: #475569;
+    --color-text-muted: #64748b;
+    --color-border: rgba(64, 158, 255, 0.2);
+    --color-border-strong: rgba(64, 158, 255, 0.3);
+    --color-bg-card: rgba(255, 255, 255, 0.75);
+    --color-bg-page: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+}
+
+/* ==========================================================================
    全局字体与背景设计
    ========================================================================== */
 body {
     font-family: "Alibaba PuHuiTi", "阿里巴巴普惠体", "PingFang SC", "SF Pro Display", "Microsoft YaHei", sans-serif;
-    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    background: var(--color-bg-page);
     background-attachment: fixed;
-    color: #2c3e50;
+    color: var(--color-text-main);
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
+    font-size: var(--font-base);
+    line-height: var(--leading-normal);
 }
 
 #app {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: var(--space-10) var(--space-5);
 }
 
 /* ==========================================================================
    毛玻璃卡片核心样式 (Glassmorphism)
    ========================================================================== */
 .el-card {
-    background: rgba(255, 255, 255, 0.75) !important;
+    background: var(--color-bg-card) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
     border-radius: 20px !important;
@@ -29,12 +72,12 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 1) !important;
     box-shadow: 0 10px 30px 0 rgba(31, 38, 135, 0.05) !important;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-    margin-bottom: 35px !important;
+    margin-bottom: var(--space-6) !important;
     border-bottom: none !important;
 }
 
 .el-card__body {
-    padding: 35px 40px !important;
+    padding: var(--space-8) var(--space-6) !important;
 }
 
 .el-card:hover {
@@ -44,22 +87,17 @@ body {
 }
 
 /* ==========================================================================
-   排版细节优化 (解决拥挤和错位)
+   排版细节优化
    ========================================================================== */
-.profile-header {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-}
 
+/* 个人资料头部 - 带照片 */
 .profile-header-with-photo {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding-bottom: 20px;
+    gap: var(--space-4);
+    padding-bottom: var(--space-5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
+    margin-bottom: var(--space-5);
 }
 
 .profile-photo {
@@ -68,7 +106,7 @@ body {
     height: 110px;
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid rgba(64, 158, 255, 0.3);
+    border: 2px solid var(--color-border-strong);
     background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
     display: flex;
     align-items: center;
@@ -87,104 +125,115 @@ body {
 
 .profile-photo-placeholder i {
     font-size: 36px;
-    color: #409EFF;
+    color: var(--color-primary);
 }
 
 .profile-info {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--space-1);
 }
 
+/* 字体分级系统 */
+
+/* 标题 - 姓名 */
 .profile-name {
-    font-size: 1.6rem;
+    font-size: var(--font-xl);
     font-weight: 800;
     letter-spacing: 1px;
-    background: linear-gradient(120deg, #2563eb, #409EFF);
+    background: linear-gradient(120deg, var(--color-primary-dark), var(--color-primary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0 0 6px 0;
-    line-height: 1.2;
+    margin: 0 0 var(--space-1) 0;
+    line-height: var(--leading-tight);
 }
 
+/* 副标题 - 职位 */
 .profile-title {
-    font-size: 13px;
-    color: #409EFF;
+    font-size: var(--font-sm);
+    color: var(--color-primary);
     margin: 0;
     font-weight: 600;
-    line-height: 1.4;
+    line-height: var(--leading-normal);
 }
 
+/* 区块标题 */
+.section-header {
+    font-size: var(--font-md);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-heading);
+    line-height: var(--leading-tight);
+}
+
+.section-header i {
+    color: var(--color-primary);
+}
+
+/* 正文文本 */
 .contact-list {
     list-style: none !important;
     padding: 0;
-    margin: 20px 0 0 0;
+    margin: var(--space-5) 0 0 0;
 }
 
 .contact-list li {
     display: flex;
     align-items: center;
-    margin-bottom: 18px;
-    font-size: 14px;
-    color: #475569;
+    margin-bottom: var(--space-3);
+    font-size: var(--font-base);
+    color: var(--color-text-body);
+    line-height: var(--leading-normal);
 }
 
 .contact-list i {
-    font-size: 16px;
+    font-size: var(--font-md);
     width: 28px;
     text-align: left;
-    color: #409EFF;
+    color: var(--color-primary);
 }
 
 .contact-list a {
-    color: #409EFF;
+    color: var(--color-primary);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .contact-list a:hover {
-    color: #2563eb;
+    color: var(--color-primary-dark);
     text-decoration: underline;
 }
 
-.section-header {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #1e293b;
-}
-
-.section-header i {
-    color: #409EFF;
-}
-
+/* 标签样式 */
 .el-tag {
     border-radius: 8px !important;
-    margin-right: 12px !important;
-    margin-bottom: 12px !important;
-    padding: 6px 16px !important;
-    font-size: 13px !important;
+    margin-right: var(--space-2) !important;
+    margin-bottom: var(--space-2) !important;
+    padding: var(--space-1) var(--space-3) !important;
+    font-size: var(--font-sm) !important;
     background: rgba(255, 255, 255, 0.8) !important;
-    border: 1px solid rgba(64, 158, 255, 0.2) !important;
+    border: 1px solid var(--color-border) !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
     transition: transform 0.3s ease !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    line-height: var(--leading-normal);
 }
 
 .el-tag:hover {
     transform: scale(1.05);
 }
 
+/* 项目链接按钮 */
 .project-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--space-2);
     padding: 0;
     justify-content: flex-start;
 }
@@ -192,95 +241,117 @@ body {
 .project-links .el-button {
     border-radius: 8px !important;
     background: rgba(255, 255, 255, 0.7) !important;
-    border: 1px solid rgba(64, 158, 255, 0.3) !important;
-    color: #409EFF !important;
+    border: 1px solid var(--color-border-strong) !important;
+    color: var(--color-primary) !important;
     font-weight: 500;
-    padding: 0 8px;
+    padding: 0 var(--space-2);
     margin: 0 !important;
     transition: all 0.3s ease !important;
-    font-size: 12px;
+    font-size: var(--font-xs);
     width: 100%;
     height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: var(--leading-normal);
 }
 
 .project-links .el-button:hover {
-    background: #409EFF !important;
+    background: var(--color-primary) !important;
     color: #ffffff !important;
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(64, 158, 255, 0.2);
 }
 
+/* 时间线内容 */
 .timeline-content ul,
 .el-card ul {
-    padding-left: 20px;
-    margin-top: 15px;
+    padding-left: var(--space-5);
+    margin-top: var(--space-3);
 }
 
 .timeline-content li,
 .el-card ul li {
-    line-height: 1.8;
-    margin-bottom: 14px;
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-3);
     letter-spacing: 0.5px;
-    color: #475569;
-    font-size: 14px;
+    color: var(--color-text-body);
+    font-size: var(--font-base);
 }
 
+/* 时间线标题 */
 .timeline-title {
-    font-size: 16px;
+    font-size: var(--font-md);
     font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 6px;
+    color: var(--color-text-heading);
+    margin-bottom: var(--space-1);
+    line-height: var(--leading-tight);
 }
 
 .timeline-subtitle {
-    font-size: 14px;
-    color: #64748b;
-    margin-bottom: 12px;
+    font-size: var(--font-base);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+    line-height: var(--leading-normal);
 }
 
 .el-timeline-item__node {
-    background-color: #409EFF !important;
+    background-color: var(--color-primary) !important;
     box-shadow: 0 0 0 4px rgba(64, 158, 255, 0.2);
 }
 
+/* 高亮文本 */
 .highlight {
-    color: #2563eb;
+    color: var(--color-primary-dark);
     font-weight: 600;
     background: rgba(64, 158, 255, 0.1);
-    padding: 2px 6px;
+    padding: var(--space-1) var(--space-1);
     border-radius: 4px;
+    font-size: var(--font-sm);
 }
 
 /* ==========================================================================
    移动端断点适配
    ========================================================================== */
 @media screen and (max-width: 768px) {
+    :root {
+        --space-8: 1.5rem;
+        --space-6: 1.25rem;
+        --space-10: 1.5rem;
+    }
+    
     body {
         background: #f8fafc;
+        font-size: var(--font-sm);
     }
 
     #app {
-        padding: 15px 10px;
+        padding: var(--space-4) var(--space-3);
     }
 
     .el-card {
         border-radius: 16px !important;
-        margin-bottom: 20px !important;
+        margin-bottom: var(--space-4) !important;
     }
 
     .el-card__body {
-        padding: 25px 20px !important;
+        padding: var(--space-5) var(--space-4) !important;
     }
 
     .profile-name {
-        font-size: 24px;
+        font-size: var(--font-lg);
     }
 
     .project-links .el-button {
         width: 100%;
         margin-left: 0 !important;
+    }
+    
+    .section-header {
+        font-size: var(--font-base);
+    }
+    
+    .timeline-title {
+        font-size: var(--font-base);
     }
 }
