@@ -1,0 +1,231 @@
+/* ==========================================================================
+   全局字体与背景设计
+   ========================================================================== */
+body {
+    font-family: "Alibaba PuHuiTi", "阿里巴巴普惠体", "PingFang SC", "SF Pro Display", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    background-attachment: fixed;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+#app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ==========================================================================
+   毛玻璃卡片核心样式 (Glassmorphism)
+   ========================================================================== */
+.el-card {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-top: 1px solid rgba(255, 255, 255, 1) !important;
+    box-shadow: 0 10px 30px 0 rgba(31, 38, 135, 0.05) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    margin-bottom: 35px !important;
+    border-bottom: none !important;
+}
+
+.el-card__body {
+    padding: 35px 40px !important;
+}
+
+.el-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px 0 rgba(64, 158, 255, 0.15) !important;
+    border-color: rgba(64, 158, 255, 0.3) !important;
+}
+
+/* ==========================================================================
+   排版细节优化 (解决拥挤和错位)
+   ========================================================================== */
+.profile-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.profile-name {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: linear-gradient(120deg, #2563eb, #409EFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 10px 0;
+}
+
+.profile-title {
+    font-size: 16px;
+    color: #409EFF;
+    margin: 0;
+    font-weight: 600;
+}
+
+.contact-list {
+    list-style: none !important;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #475569;
+}
+
+.contact-list i {
+    font-size: 16px;
+    width: 28px;
+    text-align: left;
+    color: #409EFF;
+}
+
+.contact-list a {
+    color: #409EFF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-list a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.section-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1e293b;
+}
+
+.section-header i {
+    color: #409EFF;
+}
+
+.el-tag {
+    border-radius: 8px !important;
+    margin-right: 12px !important;
+    margin-bottom: 12px !important;
+    padding: 6px 16px !important;
+    font-size: 13px !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(64, 158, 255, 0.2) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.el-tag:hover {
+    transform: scale(1.05);
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.project-links .el-button {
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(64, 158, 255, 0.3) !important;
+    color: #409EFF !important;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: all 0.3s ease !important;
+}
+
+.project-links .el-button:hover {
+    background: #409EFF !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(64, 158, 255, 0.2);
+}
+
+.timeline-content ul,
+.el-card ul {
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+.timeline-content li,
+.el-card ul li {
+    line-height: 1.8;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    color: #475569;
+    font-size: 14px;
+}
+
+.timeline-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.timeline-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.el-timeline-item__node {
+    background-color: #409EFF !important;
+    box-shadow: 0 0 0 4px rgba(64, 158, 255, 0.2);
+}
+
+.highlight {
+    color: #2563eb;
+    font-weight: 600;
+    background: rgba(64, 158, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   移动端断点适配
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    body {
+        background: #f8fafc;
+    }
+
+    #app {
+        padding: 15px 10px;
+    }
+
+    .el-card {
+        border-radius: 16px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .el-card__body {
+        padding: 25px 20px !important;
+    }
+
+    .profile-name {
+        font-size: 24px;
+    }
+
+    .project-links .el-button {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+}
