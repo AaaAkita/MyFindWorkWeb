@@ -19,9 +19,18 @@
 
             <el-col :xs="24" :sm="10" :md="8" :lg="7">
                 <el-card>
-                    <div class="profile-header">
-                        <h1 class="profile-name">王宏凯</h1>
-                        <p class="profile-title">AIGC 工作流 / 数字资产工程师</p>
+                    <div class="profile-header-with-photo">
+                        <div class="profile-photo" v-if="photoUrl">
+                            <img :src="photoUrl" alt="个人照片">
+                        </div>
+                        <div class="profile-photo profile-photo-placeholder" v-else>
+                            <i class="el-icon-user-solid"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h1 class="profile-name">王宏凯</h1>
+                            <p class="profile-title">AIGC 工作流</p>
+                            <p class="profile-title">数字资产工程师</p>
+                        </div>
                     </div>
                     <ul class="contact-list">
                         <li><i class="el-icon-user"></i> 5 年工作经验 | 28 岁</li>
