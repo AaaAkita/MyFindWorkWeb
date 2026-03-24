@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Monolith | PSD 处理器</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols Outlined -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "primary-fixed": "#dae2fd",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "background": "#f7f9fb",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "secondary-container": "#d5e3fc",
+                        "error": "#ba1a1a",
+                        "primary-container": "#131b2e",
+                        "surface-tint": "#565e74",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-container": "#7c839b",
+                        "secondary": "#515f74",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "tertiary-container": "#002113",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary-container": "#009668",
+                        "on-tertiary-fixed": "#002113",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-secondary-container": "#57657a",
+                        "outline-variant": "#c6c6cd",
+                        "secondary-fixed": "#d5e3fc",
+                        "inverse-surface": "#2d3133",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed": "#6ffbbe",
+                        "outline": "#76777d",
+                        "on-error": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        body {
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e0e3e5;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #515f74;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body antialiased">
+    <!-- Main Content (Full Width) -->
+    <main class="min-h-screen w-full flex flex-col bg-surface relative">
+        <!-- Header with Branding Only -->
+        <header
+            class="w-full z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md h-16 flex justify-between items-center px-10 shadow-sm shadow-slate-200/50 dark:shadow-none">
+            <div class="flex items-center gap-4">
+                <div class="text-xl font-black tracking-tighter text-black dark:text-white uppercase">The Monolith</div>
+                <div class="text-[10px] text-secondary font-mono opacity-60">v2.4.0-稳定版</div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative group hidden md:block">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-lg">search</span>
+                    </span>
+                    <input
+                        class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-[10px] font-bold tracking-widest focus:ring-2 focus:ring-tertiary-fixed transition-all w-64 uppercase"
+                        placeholder="搜索资产..." type="text" />
+                </div>
+                <div class="flex gap-4">
+                    <span
+                        class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors"
+                        data-icon="notifications">notifications</span>
+                    <span
+                        class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors"
+                        data-icon="account_circle">account_circle</span>
+                </div>
+            </div>
+        </header>
+        <!-- Main Workspace Container -->
+        <div class="p-10 flex-1 flex flex-col gap-8 pb-32 max-w-7xl mx-auto w-full">
+            <!-- 1. Quick Stats & Action Section (Replaces old Upload) -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="md:col-span-2 group relative overflow-hidden bg-surface-container-low rounded-xl p-8 flex items-center justify-between border border-outline-variant/10 hover:border-on-tertiary-container/30 transition-all shadow-sm">
+                    <div class="flex items-center gap-6">
+                        <div
+                            class="w-16 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
+                            <span class="material-symbols-outlined text-3xl">description</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-black tracking-tight uppercase leading-none mb-1">Photoshop 资产</h2>
+                            <p class="text-[10px] text-secondary font-bold uppercase tracking-widest opacity-60">Ready
+                                for automated processing</p>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-primary text-on-primary px-8 py-3 rounded font-black text-xs uppercase tracking-[0.15em] hover:shadow-xl hover:shadow-primary/20 transition-all active:scale-95">
+                        使用演示文件
+                    </button>
+                </div>
+                <!-- Quick Stats Mini Card -->
+                <div
+                    class="bg-tertiary-fixed/10 rounded-xl p-8 border border-tertiary-fixed/20 flex flex-col justify-center">
+                    <span
+                        class="text-[9px] font-black text-on-tertiary-fixed-variant uppercase tracking-[0.2em] mb-2 opacity-70">队列状态</span>
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl font-black text-on-tertiary-fixed-variant tracking-tighter">在线</span>
+                        <div class="flex -space-x-2">
+                            <div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-300"></div>
+                            <div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-400"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 2. Processing Status View (Pipeline Telemetry) -->
+            <section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="text-[10px] font-black tracking-widest uppercase text-secondary">流水线遥测</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+                        <span class="text-[10px] font-bold text-on-tertiary-fixed-variant uppercase">当前任务:
+                            Job_#8812</span>
+                    </div>
+                </div>
+                <div class="flex justify-between relative px-4"><!-- Progress Bar Background -->
+                    <div class="absolute top-4 left-4 right-4 h-0.5 bg-surface-container-high z-0"></div>
+                    <!-- Progress Bar Active -->
+                    <div class="absolute top-4 left-4 w-[75%] h-0.5 bg-on-tertiary-container z-0"></div>
+                    <!-- Step 1 -->
+                    <div class="relative z-10 flex flex-col items-center gap-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-on-tertiary-container text-on-tertiary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-sm"
+                                style="font-variation-settings: 'FILL' 1;">check</span>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">上传中</span>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative z-10 flex flex-col items-center gap-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-on-tertiary-container text-on-tertiary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-sm"
+                                style="font-variation-settings: 'FILL' 1;">check</span>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">元数据解析</span>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative z-10 flex flex-col items-center gap-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-on-tertiary-container text-on-tertiary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-sm"
+                                style="font-variation-settings: 'FILL' 1;">check</span>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">预览生成</span>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative z-10 flex flex-col items-center gap-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center outline outline-4 outline-surface">
+                            <span class="material-symbols-outlined text-sm">psychology</span>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">AI 自动命名</span>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="relative z-10 flex flex-col items-center gap-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+                            <span class="material-symbols-outlined text-sm">database</span>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface-variant">JSON
+                            就绪</span>
+                    </div>
+                </div>
+            </section>
+            <!-- 3. Main Dashboard Grid -->
+            <div class="grid grid-cols-12 gap-8 items-stretch">
+                <!-- Left Column: Parameters & AI -->
+                <div class="col-span-12 lg:col-span-4 flex flex-col gap-8">
+                    <!-- Metadata Card -->
+                    <div class="bg-surface-container-low p-8 rounded-xl flex flex-col h-fit">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-secondary">info</span>
+                            <h3 class="text-xs font-black tracking-widest uppercase">物理参数</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
+                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">画布宽度</span>
+                                <span class="text-xl font-black text-on-surface">3840<small
+                                        class="text-xs ml-1 opacity-50">px</small></span>
+                            </div>
+                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
+                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">画布高度</span>
+                                <span class="text-xl font-black text-on-surface">2160<small
+                                        class="text-xs ml-1 opacity-50">px</small></span>
+                            </div>
+                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
+                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">分辨率</span>
+                                <span class="text-xl font-black text-on-surface">300<small
+                                        class="text-xs ml-1 opacity-50">dpi</small></span>
+                            </div>
+                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
+                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">色彩模式</span>
+                                <span class="text-xl font-black text-on-surface">RGBA<small
+                                        class="text-xs ml-1 opacity-50">16b</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- AI Intelligence Hub -->
+                    <div class="bg-surface-container-highest p-8 rounded-xl relative overflow-hidden h-fit">
+                        <div class="absolute -right-4 -top-4 w-32 h-32 bg-tertiary-fixed/20 rounded-full blur-3xl">
+                        </div>
+                        <div class="flex items-center gap-3 mb-6 relative z-10">
+                            <span class="material-symbols-outlined text-on-tertiary-fixed-variant"
+                                style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                            <h3 class="text-xs font-black tracking-widest uppercase text-on-tertiary-fixed-variant">AI
+                                智能中心</h3>
+                        </div>
+                        <div class="bg-white/40 backdrop-blur-sm p-5 rounded-lg border border-white/50 relative z-10">
+                            <div class="flex justify-between items-start mb-2">
+                                <span
+                                    class="text-[10px] font-black text-on-tertiary-fixed-variant opacity-60 uppercase">建议标题</span>
+                                <span
+                                    class="material-symbols-outlined text-sm cursor-pointer hover:text-black transition-colors">edit</span>
+                            </div>
+                            <p class="text-lg font-bold tracking-tight text-on-surface leading-tight break-all">
+                                Dark_Aesthetic_Dashboard_Hero_v2_Final</p>
+                            <div class="mt-4 flex gap-2">
+                                <span
+                                    class="bg-tertiary-fixed px-2 py-0.5 rounded-full text-[9px] font-bold uppercase text-on-tertiary-fixed">置信度高</span>
+                                <span
+                                    class="bg-surface-container-highest px-2 py-0.5 rounded-full text-[9px] font-bold uppercase text-secondary">语义匹配</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Middle Column: Layer Hierarchy -->
+                <div class="col-span-12 lg:col-span-4">
+                    <div class="bg-surface-container-low rounded-xl flex flex-col h-full min-h-[500px]">
+                        <div class="p-6 border-b border-outline-variant/10 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">account_tree</span>
+                                <h3 class="text-xs font-black tracking-widest uppercase">图层层级</h3>
+                            </div>
+                            <span
+                                class="text-[10px] font-bold text-on-tertiary-container bg-tertiary-fixed/30 px-2 py-1 rounded">124
+                                个图层</span>
+                        </div>
+                        <div class="flex-1 overflow-y-auto p-4 space-y-1">
+                            <div
+                                class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group">
+                                <span class="material-symbols-outlined text-secondary text-sm">folder_open</span>
+                                <span class="text-xs font-semibold flex-1">UI_组件</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
+                            </div>
+                            <div
+                                class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group">
+                                <span class="material-symbols-outlined text-secondary text-sm">image</span>
+                                <span class="text-xs font-medium flex-1">背景纹理</span>
+                                <span class="material-symbols-outlined text-xs text-on-tertiary-container"
+                                    style="font-variation-settings: 'FILL' 1;">lock</span>
+                            </div>
+                            <div
+                                class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group">
+                                <span
+                                    class="material-symbols-outlined text-on-tertiary-container text-sm">text_fields</span>
+                                <span class="text-xs font-medium flex-1">主页页眉</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group">
+                                <span class="material-symbols-outlined text-secondary text-sm">folder</span>
+                                <span class="text-xs font-semibold flex-1">导航系统</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
+                            </div>
+                            <div
+                                class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group">
+                                <span class="material-symbols-outlined text-secondary text-sm">crop_square</span>
+                                <span class="text-xs font-medium flex-1">侧边栏容器</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group">
+                                <span class="material-symbols-outlined text-secondary text-sm">image</span>
+                                <span class="text-xs font-semibold flex-1">页脚最终渲染</span>
+                                <span
+                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Preview -->
+                <div class="col-span-12 lg:col-span-4">
+                    <div
+                        class="bg-surface-container-low rounded-xl overflow-hidden shadow-xl shadow-slate-200/50 h-full flex flex-col">
+                        <div
+                            class="p-6 border-b border-outline-variant/10 bg-surface-container-low flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">preview</span>
+                                <h3 class="text-xs font-black tracking-widest uppercase">PSD 高保真预览</h3>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">fullscreen</span>
+                        </div>
+                        <div class="flex-1 bg-slate-200 relative min-h-[400px]">
+                            <img alt="PSD 构图预览" class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXFAaudDCYVtLWYThON0fAuWLpyK4OtMklq-4-i49mmdI_GiI_QfWFgo-JWClJkYEGuQqXqESPGN1AkRcKQAGsCzOo-NFr14RP7qF0jNlRrP7gnReGRP3Fu1edL6Gd7wWM39lEPRbDc30Ny2lGjO6lqeRqcJtpZn0UniVZUyR2agpFosDhZqCfFLm6wmAHPUHeLLAApx-0c6Czd4JwH1hxTg6ROhtcIP2UITulDS4J5ZBAzbgysm9AxdsK2vCFvhuAFu3v2W9h_vGD" />
+                            <!-- Overlay Grid -->
+                            <div
+                                class="absolute inset-0 pointer-events-none border-[1px] border-white/10 grid grid-cols-4 grid-rows-4">
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-r border-b border-white/5"></div>
+                                <div class="border-b border-white/5"></div>
+                                <div class="border-r border-white/5"></div>
+                                <div class="border-r border-white/5"></div>
+                                <div class="border-r border-white/5"></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Action Bar (Sticky) -->
+        <footer
+            class="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-xl border-t border-outline-variant/20 p-6 flex justify-between items-center z-40">
+            <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+                <div class="flex items-center gap-6">
+                    <div class="flex flex-col">
+                        <span class="text-[9px] font-black text-secondary uppercase tracking-widest">选中输出</span>
+                        <span class="text-sm font-bold font-mono">project_alpha_v2.json</span>
+                    </div>
+                    <div class="h-8 w-[1px] bg-outline-variant/30 hidden sm:block"></div>
+                    <div class="hidden sm:flex items-center gap-4">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input checked="" class="rounded-sm border-secondary text-primary focus:ring-primary"
+                                type="checkbox" />
+                            <span class="text-[10px] font-bold uppercase tracking-tight text-secondary">导出素材</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input class="rounded-sm border-secondary text-primary focus:ring-primary"
+                                type="checkbox" />
+                            <span class="text-[10px] font-bold uppercase tracking-tight text-secondary">压缩字符串</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <button
+                        class="px-8 py-3 rounded font-black text-xs uppercase tracking-widest text-secondary hover:bg-surface-container-low transition-colors">放弃草案</button>
+                    <button
+                        class="bg-primary text-on-primary px-10 py-3 rounded font-black text-xs uppercase tracking-[0.15em] flex items-center gap-3 hover:shadow-xl hover:shadow-primary/20 transition-all">
+                        <span>保存至 JSON 数据库</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
