@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="dark">
+<html class="light" lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
@@ -12,39 +12,45 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         rel="stylesheet" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        primary: '#a6c8ff',
-                        onPrimary: '#003060',
-                        secondary: '#b9c7db',
-                        onSecondary: '#243140',
-                        tertiary: '#d4bee5',
-                        onTertiary: '#392a48',
-                        surface: '#111318',
-                        onSurface: '#e2e2e9',
-                        outline: '#8e9099',
-                        onSurfaceVariant: '#44474e',
-                        outlineVariant: '#c4c6d0',
-                        'primary-container': '#004786',
-                        'on-primary-container': '#d3e4ff',
-                        'secondary-container': '#3a4758',
-                        'on-secondary-container': '#d5e3f7',
-                        'tertiary-container': '#514060',
-                        'on-tertiary-container': '#f1dbff',
-                        'surface-container-highest': '#33353a',
-                        'surface-container-high': '#282a2f',
-                        'surface-container': '#1e2025',
-                        'surface-container-low': '#1a1b20',
-                        'surface-container-lowest': '#0c0e13',
-                        'tertiary-fixed': '#f1dbff',
-                        'on-tertiary-fixed': '#281532',
-                        'tertiary-fixed-dim': '#d4bee5',
-                        'on-tertiary-fixed-variant': '#514060',
+                        // 基础版面白灰色系
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container": "#eceef0",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "on-surface-variant": "#515f74",
+                        "outline-variant": "#e0e3e5",
+
+                        /* 用户要求的三种低饱和度主题色 */
+                        "accent-blue": {
+                            50: "#f0f5fa",
+                            100: "#e1ecf6",
+                            300: "#a3c3e1",
+                            500: "#6093c4",
+                            700: "#466d94"
+                        },
+                        "accent-orange": {
+                            50: "#fff6ef",
+                            100: "#ffe8d5",
+                            300: "#ffc191",
+                            500: "#f5873b",
+                            700: "#b0571f"
+                        },
+                        "accent-cyan": {
+                            50: "#ebfaf8",
+                            100: "#d1f4ec",
+                            300: "#94e3d3",
+                            500: "#42bda1",
+                            700: "#2c826e"
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'Microsoft YaHei', 'sans-serif'],
@@ -55,42 +61,39 @@
         }
     </script>
     <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
         body {
             font-family: 'Inter', 'Microsoft YaHei', sans-serif;
-            background-color: #0c0e13;
-            color: #e2e2e9;
+            background-color: #f7f9fb;
+            color: #191c1e;
         }
 
         .glass-panel {
-            background: rgba(26, 27, 32, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(196, 198, 208, 0.1);
+            background: #ffffff;
+            border: 1px solid #e0e3e5;
         }
     </style>
 </head>
 
 <body
-    class="bg-surface-container-lowest text-on-surface antialiased min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container p-4 md:p-8">
+    class="bg-surface text-on-surface antialiased min-h-screen relative overflow-x-hidden selection:bg-accent-blue-100 selection:text-accent-blue-700 p-4 md:p-8">
 
-    <!-- Background Grid Effect -->
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div
-            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTAgMGg0MHYxSDB6bTAgNDBWMGgxdjQweiIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAzKSIvPgo8L3N2Zz4=')]">
-        </div>
-    </div>
-
-    <div class="max-w-6xl mx-auto relative z-10">
-        <!-- Header / Nav (Optional Logo) -->
-        <header class="w-full mb-8 flex justify-between items-center px-4">
+    <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Header / Nav -->
+        <header
+            class="w-full mb-8 flex justify-between items-center px-4 bg-surface-container-lowest/80 backdrop-blur-md h-16 rounded-xl border border-outline-variant shadow-sm">
             <div class="flex items-center gap-4">
-                <div class="text-xl font-black tracking-tighter text-white uppercase">H.K. Resume</div>
-                <div class="text-[10px] text-secondary font-mono opacity-60">v2.0-DARK_EDITION</div>
+                <div class="text-xl font-black tracking-tighter text-on-surface uppercase">王宏凯的简历</div>
+                <div class="text-[10px] text-on-surface-variant font-mono opacity-60">v3.1-LOW_SAT_COLORS</div>
             </div>
             <div class="flex items-center gap-4">
                 <a href="../PSD.html"
-                    class="flex items-center gap-2 hover:bg-white/10 px-3 py-1.5 rounded transition-colors text-xs font-bold text-secondary border border-outline-variant/20 hover:border-white/30">
-                    <span class="material-symbols-outlined text-sm">dashboard</span> PSD 处理器版面风格
+                    class="flex items-center gap-2 hover:bg-surface-container px-3 py-1.5 rounded transition-colors text-xs font-bold text-on-surface-variant border border-outline-variant">
+                    <span class="material-symbols-outlined text-sm">dashboard</span> 查看 PSD 处理器
                 </a>
             </div>
         </header>
@@ -101,167 +104,188 @@
             <div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
 
                 <!-- Profile Card -->
-                <div class="glass-panel rounded-2xl p-6 shadow-2xl flex flex-col gap-6">
-                    <div class="flex items-center gap-5 pb-5 border-b border-outline-variant/10">
+                <div class="glass-panel rounded-xl p-8 shadow-sm flex flex-col gap-6 relative overflow-hidden">
+                    <div
+                        class="absolute -right-12 -top-12 w-32 h-32 bg-accent-blue-50 rounded-full blur-xl pointer-events-none">
+                    </div>
+
+                    <div class="flex items-center gap-5 pb-5 border-b border-outline-variant relative z-10">
                         <div
-                            class="w-[84px] h-[118px] bg-surface-container-highest rounded border border-outline-variant/20 flex flex-col items-center justify-center flex-shrink-0 text-primary opacity-80">
+                            class="w-[84px] h-[118px] bg-accent-blue-50 border border-accent-blue-100 rounded-lg flex flex-col items-center justify-center flex-shrink-0 text-accent-blue-500">
                             <span class="material-symbols-outlined text-4xl mb-1">person</span>
-                            <span class="text-[8px] tracking-widest uppercase opacity-50">Photo ID</span>
+                            <span class="text-[8px] tracking-widest uppercase opacity-80">Photo ID</span>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <h1 class="text-3xl font-black tracking-tight text-white mb-2">王宏凯</h1>
-                            <p class="text-xs font-bold text-primary uppercase">AIGC 工作流工程师</p>
-                            <p class="text-[10px] text-secondary uppercase">技术美术 (TA)</p>
-                            <p class="text-[10px] text-secondary uppercase">数字内容自动化工程师</p>
+                            <h1 class="text-3xl font-black tracking-tight text-on-surface mb-2">王宏凯</h1>
+                            <p
+                                class="text-[11px] font-bold text-accent-blue-700 uppercase bg-accent-blue-50 border border-accent-blue-100 w-fit px-2 py-0.5 rounded">
+                                AIGC 工作流工程师</p>
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase mt-1">技术美术 (TA)</p>
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase">数字内容自动化工程师</p>
                         </div>
                     </div>
 
-                    <ul class="flex flex-col gap-4">
-                        <li class="flex items-center gap-3 text-sm text-secondary">
-                            <div class="bg-primary/10 p-1.5 rounded text-primary flex items-center justify-center"><span
-                                    class="material-symbols-outlined text-sm">work</span></div>
-                            <span class="font-medium">5 年经验 <span class="mx-1 opacity-30">|</span> 28 岁</span>
+                    <ul class="flex flex-col gap-4 relative z-10">
+                        <li class="flex items-center gap-3 text-sm text-on-surface-variant">
+                            <div
+                                class="bg-surface-container-low p-1.5 rounded text-accent-orange-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">work</span></div>
+                            <span class="font-medium text-on-surface">5 年经验 <span class="mx-1 opacity-30">|</span> 28
+                                岁</span>
                         </li>
-                        <li class="flex items-center gap-3 text-sm text-secondary">
-                            <div class="bg-primary/10 p-1.5 rounded text-primary flex items-center justify-center"><span
-                                    class="material-symbols-outlined text-sm">phone_iphone</span></div>
-                            <span class="font-mono">166-2840-8776</span>
+                        <li class="flex items-center gap-3 text-sm text-on-surface-variant">
+                            <div
+                                class="bg-surface-container-low p-1.5 rounded text-accent-cyan-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">phone_iphone</span></div>
+                            <span class="font-mono text-on-surface">166-2840-8776</span>
                         </li>
-                        <li class="flex items-center gap-3 text-sm text-secondary">
-                            <div class="bg-primary/10 p-1.5 rounded text-primary flex items-center justify-center"><span
-                                    class="material-symbols-outlined text-sm">mail</span></div>
+                        <li class="flex items-center gap-3 text-sm text-on-surface-variant">
+                            <div
+                                class="bg-surface-container-low p-1.5 rounded text-accent-blue-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">mail</span></div>
                             <span
-                                class="font-mono text-xs text-secondary hover:text-white cursor-pointer transition-colors">whk437479@gmail.com</span>
+                                class="font-mono text-xs text-on-surface hover:text-accent-blue-700 cursor-pointer transition-colors">whk437479@gmail.com</span>
                         </li>
-                        <li class="flex items-center gap-3 text-sm text-secondary">
-                            <div class="bg-primary/10 p-1.5 rounded text-primary flex items-center justify-center"><span
-                                    class="material-symbols-outlined text-sm">code</span></div>
+                        <li class="flex items-center gap-3 text-sm text-on-surface-variant">
+                            <div
+                                class="bg-surface-container-low p-1.5 rounded text-on-surface-variant flex items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">code</span></div>
                             <a href="https://github.com/AaaAkita" target="_blank"
-                                class="font-mono text-xs hover:text-primary transition-colors underline decoration-outline-variant/30 underline-offset-4">github.com/AaaAkita</a>
+                                class="font-mono text-xs text-on-surface hover:text-accent-blue-700 transition-colors hover:underline">github.com/AaaAkita</a>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Code Repositories -->
-                <div class="glass-panel rounded-2xl p-6 shadow-2xl">
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="material-symbols-outlined text-primary"
-                            style="font-variation-settings: 'FILL' 1;">folder_zip</span>
-                        <h3 class="text-xs font-black tracking-widest uppercase">代码仓库 / 作品集</h3>
+                <div class="glass-panel rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6 relative">
+                        <div class="p-1.5 bg-accent-orange-50 text-accent-orange-700 rounded absolute -left-2"><span
+                                class="material-symbols-outlined block" style="font-size: 16px;">folder_zip</span></div>
+                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-7">代码仓库 / 作品集</h3>
                     </div>
                     <div class="flex flex-col gap-2">
                         <a href="https://github.com/AaaAkita/Wplayer" target="_blank"
-                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg hover:bg-white/10 transition-colors border border-outline-variant/5 group">
+                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded border border-outline-variant hover:border-accent-orange-300 hover:bg-accent-orange-50 transition-colors group">
                             <span
-                                class="text-xs font-semibold text-secondary group-hover:text-primary transition-colors">Wplayer
+                                class="text-xs font-semibold text-on-surface-variant group-hover:text-accent-orange-700 transition-colors">Wplayer
                                 项目</span>
                             <span
-                                class="material-symbols-outlined text-xs text-on-tertiary-container group-hover:scale-110 transition-transform">arrow_outward</span>
+                                class="material-symbols-outlined text-xs text-outline-variant group-hover:text-accent-orange-500 transition-colors">arrow_outward</span>
                         </a>
                         <a href="https://github.com/AaaAkita/PSD自动处理工具" target="_blank"
-                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg hover:bg-white/10 transition-colors border border-outline-variant/5 group">
+                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded border border-outline-variant hover:border-accent-orange-300 hover:bg-accent-orange-50 transition-colors group">
                             <span
-                                class="text-xs font-semibold text-secondary group-hover:text-primary transition-colors">PSD自动处理工具</span>
+                                class="text-xs font-semibold text-on-surface-variant group-hover:text-accent-orange-700 transition-colors">PSD自动处理工具</span>
                             <span
-                                class="material-symbols-outlined text-xs text-on-tertiary-container group-hover:scale-110 transition-transform">arrow_outward</span>
+                                class="material-symbols-outlined text-xs text-outline-variant group-hover:text-accent-orange-500 transition-colors">arrow_outward</span>
                         </a>
                         <a href="https://github.com/AaaAkita/YSY图片标注平台" target="_blank"
-                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg hover:bg-white/10 transition-colors border border-outline-variant/5 group">
+                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded border border-outline-variant hover:border-accent-orange-300 hover:bg-accent-orange-50 transition-colors group">
                             <span
-                                class="text-xs font-semibold text-secondary group-hover:text-primary transition-colors">YSY图片标注平台</span>
+                                class="text-xs font-semibold text-on-surface-variant group-hover:text-accent-orange-700 transition-colors">YSY图片标注平台</span>
                             <span
-                                class="material-symbols-outlined text-xs text-on-tertiary-container group-hover:scale-110 transition-transform">arrow_outward</span>
+                                class="material-symbols-outlined text-xs text-outline-variant group-hover:text-accent-orange-500 transition-colors">arrow_outward</span>
                         </a>
                         <a href="https://github.com/AaaAkita/浏览器自动操作平台" target="_blank"
-                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg hover:bg-white/10 transition-colors border border-outline-variant/5 group">
+                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded border border-outline-variant hover:border-accent-orange-300 hover:bg-accent-orange-50 transition-colors group">
                             <span
-                                class="text-xs font-semibold text-secondary group-hover:text-primary transition-colors">浏览器自动操作平台</span>
+                                class="text-xs font-semibold text-on-surface-variant group-hover:text-accent-orange-700 transition-colors">浏览器自动操作平台</span>
                             <span
-                                class="material-symbols-outlined text-xs text-on-tertiary-container group-hover:scale-110 transition-transform">arrow_outward</span>
+                                class="material-symbols-outlined text-xs text-outline-variant group-hover:text-accent-orange-500 transition-colors">arrow_outward</span>
                         </a>
                         <a href="https://github.com/AaaAkita/浏览器爬虫工具平台" target="_blank"
-                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg hover:bg-white/10 transition-colors border border-outline-variant/5 group">
+                            class="flex items-center justify-between p-3 bg-surface-container-lowest rounded border border-outline-variant hover:border-accent-orange-300 hover:bg-accent-orange-50 transition-colors group">
                             <span
-                                class="text-xs font-semibold text-secondary group-hover:text-primary transition-colors">浏览器爬虫工具平台</span>
+                                class="text-xs font-semibold text-on-surface-variant group-hover:text-accent-orange-700 transition-colors">浏览器爬虫工具平台</span>
                             <span
-                                class="material-symbols-outlined text-xs text-on-tertiary-container group-hover:scale-110 transition-transform">arrow_outward</span>
+                                class="material-symbols-outlined text-xs text-outline-variant group-hover:text-accent-orange-500 transition-colors">arrow_outward</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- Skills -->
-                <div class="glass-panel rounded-2xl p-6 shadow-2xl">
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="material-symbols-outlined text-primary"
-                            style="font-variation-settings: 'FILL' 1;">memory</span>
-                        <h3 class="text-xs font-black tracking-widest uppercase">核心技能清单</h3>
+                <div class="glass-panel rounded-xl p-8 shadow-sm relative overflow-hidden">
+                    <div
+                        class="absolute -right-8 -bottom-8 w-24 h-24 bg-accent-cyan-50 rounded-full blur-xl pointer-events-none">
                     </div>
-                    <div class="flex flex-wrap gap-2">
+
+                    <div class="flex items-center gap-3 mb-6 relative">
+                        <div class="p-1.5 bg-accent-cyan-50 text-accent-cyan-700 rounded absolute -left-2"><span
+                                class="material-symbols-outlined block" style="font-size: 16px;">memory</span></div>
+                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-7">技能清单</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 relative z-10">
+                        <!-- Blue Theme elements -->
                         <span
-                            class="bg-primary-container/20 border border-primary/20 text-on-primary-container px-2.5 py-1 rounded text-xs font-bold leading-none flex items-center">Python
+                            class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">Python
                             开发</span>
                         <span
-                            class="bg-primary-container/20 border border-primary/20 text-on-primary-container px-2.5 py-1 rounded text-xs font-bold leading-none flex items-center">前端框架/交互</span>
+                            class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">前端框架/交互</span>
                         <span
-                            class="bg-primary-container/20 border border-primary/20 text-on-primary-container px-2.5 py-1 rounded text-xs font-bold leading-none flex items-center">数据库管理</span>
+                            class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">数据库管理</span>
+                        <!-- Orange Theme elements -->
                         <span
-                            class="bg-primary-container/20 border border-primary/20 text-on-primary-container px-2.5 py-1 rounded text-xs font-bold leading-none flex items-center">Docker
+                            class="bg-accent-orange-50 border border-accent-orange-100 text-accent-orange-700 px-2.5 py-1 rounded text-xs font-bold leading-none">Docker
                             部署</span>
                         <span
-                            class="bg-primary-container/20 border border-primary/20 text-on-primary-container px-2.5 py-1 rounded text-xs font-bold leading-none flex items-center">OSS
+                            class="bg-accent-orange-50 border border-accent-orange-100 text-accent-orange-700 px-2.5 py-1 rounded text-xs font-bold leading-none">OSS
                             / Shell</span>
+                        <!-- Cyan Theme elements -->
                         <span
-                            class="bg-tertiary-container/20 border border-tertiary/20 text-tertiary-fixed px-2.5 py-1 rounded text-xs font-bold leading-none flex items-center">FFmpeg
+                            class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-2.5 py-1 rounded text-xs font-bold leading-none">FFmpeg
                             / OpenCV</span>
                         <span
-                            class="bg-tertiary-container/20 border border-tertiary/20 text-tertiary-fixed px-2.5 py-1 rounded text-xs font-bold leading-none flex items-center">3D
+                            class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-2.5 py-1 rounded text-xs font-bold leading-none">3D
                             资产标准化</span>
                     </div>
                 </div>
 
                 <!-- Tools -->
-                <div class="glass-panel rounded-2xl p-6 shadow-2xl">
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="material-symbols-outlined text-primary"
-                            style="font-variation-settings: 'FILL' 1;">build</span>
-                        <h3 class="text-xs font-black tracking-widest uppercase">生产工具库</h3>
+                <div class="glass-panel rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6 relative">
+                        <div class="p-1.5 bg-surface-container px-2 pb-1 rounded absolute -left-2"><span
+                                class="material-symbols-outlined block text-on-surface-variant"
+                                style="font-size: 16px;">build</span></div>
+                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-9">生产工具库</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <span
-                            class="bg-surface-container border border-outline-variant/10 text-secondary px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:border-outline-variant/30 transition-colors">3ds
+                            class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:bg-accent-cyan-50 hover:border-accent-cyan-300 hover:text-accent-cyan-700 transition-colors cursor-default">3ds
                             Max</span>
                         <span
-                            class="bg-surface-container border border-outline-variant/10 text-secondary px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:border-outline-variant/30 transition-colors">ZBrush</span>
+                            class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:bg-accent-cyan-50 hover:border-accent-cyan-300 hover:text-accent-cyan-700 transition-colors cursor-default">ZBrush</span>
                         <span
-                            class="bg-surface-container border border-outline-variant/10 text-secondary px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:border-outline-variant/30 transition-colors text-primary">Unreal
+                            class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:bg-accent-cyan-50 hover:border-accent-cyan-300 hover:text-accent-cyan-700 transition-colors cursor-default">Unreal
                             Engine</span>
                         <span
-                            class="bg-surface-container border border-outline-variant/10 text-secondary px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:border-outline-variant/30 transition-colors text-tertiary">Stable
+                            class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:bg-accent-blue-50 hover:border-accent-blue-300 hover:text-accent-blue-700 transition-colors cursor-default">Stable
                             Diffusion</span>
                         <span
-                            class="bg-surface-container border border-outline-variant/10 text-secondary px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:border-outline-variant/30 transition-colors text-tertiary">ComfyUI</span>
+                            class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:bg-accent-blue-50 hover:border-accent-blue-300 hover:text-accent-blue-700 transition-colors cursor-default">ComfyUI</span>
                         <span
-                            class="bg-surface-container border border-outline-variant/10 text-secondary px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:border-outline-variant/30 transition-colors">Claude
+                            class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:bg-accent-orange-50 hover:border-accent-orange-300 hover:text-accent-orange-700 transition-colors cursor-default">Claude
                             Code</span>
                         <span
-                            class="bg-surface-container border border-outline-variant/10 text-secondary px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:border-outline-variant/30 transition-colors">Cursor
+                            class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-2.5 py-1 rounded text-[10px] font-bold uppercase hover:bg-accent-orange-50 hover:border-accent-orange-300 hover:text-accent-orange-700 transition-colors cursor-default">Cursor
                             / Trae</span>
                     </div>
                 </div>
 
                 <!-- Education -->
-                <div class="glass-panel rounded-2xl p-6 shadow-2xl">
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="material-symbols-outlined text-primary"
-                            style="font-variation-settings: 'FILL' 1;">school</span>
-                        <h3 class="text-xs font-black tracking-widest uppercase">教育背景</h3>
+                <div class="glass-panel rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center gap-3 mb-5 relative">
+                        <div class="p-1.5 bg-surface-container px-2 pb-1 rounded absolute -left-2"><span
+                                class="material-symbols-outlined block text-on-surface-variant"
+                                style="font-size: 16px;">school</span></div>
+                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-9">教育背景</h3>
                     </div>
-                    <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/5">
-                        <div class="text-sm font-bold text-white mb-2">上海中侨职业技术学院</div>
-                        <div class="text-[11px] text-secondary/80 flex items-center gap-2">
+                    <div
+                        class="bg-surface-container-low p-4 rounded-xl border border-outline-variant flex flex-col gap-1 hover:border-accent-cyan-300 transition-colors">
+                        <div class="text-sm font-bold text-on-surface">上海中侨职业技术学院</div>
+                        <div class="text-[11px] font-medium text-on-surface-variant flex items-center gap-2">
                             <span
-                                class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[10px] font-bold">专科</span>
-                            计算机应用专业 <span class="opacity-50">|</span> 2020年毕业
+                                class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-1.5 py-0.5 rounded text-[10px] font-bold">专科</span>
+                            计算机应用 <span class="opacity-50 mx-1">|</span> 2020年毕业
                         </div>
                     </div>
                 </div>
@@ -272,115 +296,128 @@
             <div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
 
                 <!-- Summary -->
-                <div class="glass-panel rounded-2xl md:p-8 p-5 shadow-2xl">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="material-symbols-outlined text-tertiary-fixed-dim bg-tertiary/10 p-1.5 rounded"
-                            style="font-variation-settings: 'FILL' 1;">psychology</span>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-tertiary-fixed-dim">个人总结</h3>
+                <div class="glass-panel rounded-xl p-8 shadow-sm relative overflow-hidden">
+                    <!-- Subtle background decoration -->
+                    <div
+                        class="absolute right-0 bottom-0 w-48 h-48 bg-accent-blue-50 rounded-full blur-3xl pointer-events-none opacity-50">
                     </div>
-                    <ul class="flex flex-col gap-4 text-sm text-secondary leading-relaxed">
-                        <li class="pl-4 border-l-2 border-tertiary/30"><span
-                                class="text-white font-bold mr-1">复合背景：</span> 5 年数字内容生产经验，具备"美术生产流程 + 自动化开发 + AI
+
+                    <div class="flex items-center gap-3 mb-6 relative z-10">
+                        <div class="p-1.5 bg-accent-blue-50 text-accent-blue-700 rounded absolute -left-2">
+                            <span class="material-symbols-outlined block" style="font-size: 18px;">psychology</span>
+                        </div>
+                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-8">个人总结</h3>
+                    </div>
+                    <ul class="flex flex-col gap-5 text-sm text-on-surface-variant leading-relaxed relative z-10">
+                        <li class="pl-4 border-l-2 border-accent-blue-300"><span
+                                class="text-on-surface font-black mr-1">复合背景：</span> 5 年数字内容生产经验，具备"美术生产流程 + 自动化开发 + AI
                             应用"的复合能力。深刻理解 3D 模型、图片、视频的生产痛点，能通过技术手段解决效率问题。</li>
-                        <li class="pl-4 border-l-2 border-tertiary/30"><span
-                                class="text-white font-bold mr-1">技术赋能：</span> 熟练掌握 Python 脚本开发，独立编写自动化处理工具；熟悉 AI
+                        <li class="pl-4 border-l-2 border-accent-blue-300"><span
+                                class="text-on-surface font-black mr-1">技术赋能：</span> 熟练掌握 Python 脚本开发，独立编写自动化处理工具；熟悉 AI
                             绘画/视频工作流（ComfyUI/SD/即梦/SeedDance），具备 AI 项目部署与调试能力。</li>
-                        <li class="pl-4 border-l-2 border-tertiary/30"><span
-                                class="text-white font-bold mr-1">效能提升：</span> 擅长搭建多媒体资产处理管线，曾通过自动化脚本将资源入库效率提升 <span
-                                class="text-tertiary font-bold px-1.5 py-0.5 bg-tertiary/10 rounded">90%</span>，显著降低人工重复劳动。
+                        <li class="pl-4 border-l-2 border-accent-blue-500"><span
+                                class="text-on-surface font-black mr-1">效能提升：</span> 擅长搭建多媒体资产处理管线，曾通过自动化脚本将资源入库效率提升
+                            <span
+                                class="text-accent-blue-700 font-bold px-1.5 py-0.5 bg-accent-blue-50 border border-accent-blue-100 rounded ml-0.5 mr-0.5 shadow-sm">90%</span>，显著降低人工重复劳动。
                         </li>
-                        <li class="pl-4 border-l-2 border-tertiary/30"><span
-                                class="text-white font-bold mr-1">持续学习：</span> 保持对前沿技术的敏感度，持续学习 AI
+                        <li class="pl-4 border-l-2 border-accent-blue-300"><span
+                                class="text-on-surface font-black mr-1">持续学习：</span> 保持对前沿技术的敏感度，持续学习 AI
                             新技术与新工具，快速将新技术转化为实际生产力，推动团队技术能力升级。</li>
                     </ul>
                 </div>
 
                 <!-- Work Experience -->
-                <div class="glass-panel rounded-2xl md:p-8 p-5 shadow-2xl">
-                    <div class="flex items-center gap-3 mb-8">
-                        <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded"
-                            style="font-variation-settings: 'FILL' 1;">domain</span>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-primary">工作经历</h3>
+                <div class="glass-panel rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center gap-3 mb-8 relative">
+                        <div class="p-1.5 bg-accent-orange-50 text-accent-orange-700 rounded absolute -left-2">
+                            <span class="material-symbols-outlined block" style="font-size: 18px;">domain</span>
+                        </div>
+                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-8">工作经历</h3>
                     </div>
 
-                    <div class="relative pl-6 sm:pl-8 border-l border-outline-variant/10 flex flex-col gap-10">
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-accent-orange-100 flex flex-col gap-10">
                         <!-- Job 1 -->
                         <div class="relative">
                             <div
-                                class="absolute w-3.5 h-3.5 bg-primary rounded-full -left-[31.5px] sm:-left-[39.5px] top-1 shadow-[0_0_12px_rgba(166,200,255,0.6)]">
+                                class="absolute w-4 h-4 bg-accent-orange-100 rounded-full -left-[33px] sm:-left-[41px] top-1 border-4 border-white flex items-center justify-center">
+                                <div class="w-1.5 h-1.5 bg-accent-orange-500 rounded-full"></div>
                             </div>
+
                             <div class="flex justify-between items-start mb-3 flex-col sm:flex-row sm:items-center">
                                 <div>
-                                    <h4 class="text-lg font-bold text-white leading-tight mb-1">北京艾迪普数字科技公司</h4>
+                                    <h4 class="text-lg font-black text-on-surface leading-tight mb-2">北京艾迪普数字科技公司</h4>
                                     <p
-                                        class="text-[11px] text-primary tracking-wide font-mono bg-primary/10 inline-block px-2 py-0.5 rounded">
-                                        资源管理与技术美术助理</p>
+                                        class="text-[11px] text-accent-orange-700 font-bold bg-accent-orange-50 border border-accent-orange-100 inline-block px-2 py-0.5 rounded shadow-sm">
+                                        资源管理与技术美术助理 (TA)</p>
                                 </div>
                                 <span
-                                    class="text-secondary opacity-60 text-[10px] font-black uppercase mt-2 sm:mt-0 tracking-widest border border-outline-variant/10 px-2.5 py-1 rounded">2023.03
+                                    class="text-on-surface-variant opacity-80 text-[10px] font-black uppercase mt-2 sm:mt-0 tracking-widest bg-surface-container-low px-2.5 py-1 rounded border border-outline-variant">2023.03
                                     - 至今</span>
                             </div>
+
                             <ul
-                                class="flex flex-col gap-3 mt-4 text-[13px] text-secondary leading-relaxed bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/5">
+                                class="flex flex-col gap-3 mt-5 text-[13px] text-on-surface-variant leading-relaxed bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
                                 <li class="flex items-start gap-2.5"><span
-                                        class="text-primary mt-[3px] text-xs">◆</span>
-                                    <div><span class="text-white font-semibold">资产管线自动化：</span>独立开发 Python
-                                        自动上传脚本，对接资源管理系统，实现模型/素材一键上传与元数据自动填写，将资源入库时间从 <span
-                                            class="text-primary font-bold bg-primary/10 px-1 rounded">12小时/批 降至
-                                            3小时/批</span>。</div>
+                                        class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
+                                    <div><strong class="text-on-surface mr-1">资产管线自动化：</strong>独立开发 Python
+                                        自动上传脚本，对接资源管理系统，实现模型/素材一键上传与元数据自动填写，效率从 <span
+                                            class="bg-accent-orange-50 border border-accent-orange-100 px-1 font-bold text-accent-orange-700 rounded shadow-sm">12小时/批
+                                            降至 3小时/批</span>。</div>
                                 </li>
                                 <li class="flex items-start gap-2.5"><span
-                                        class="text-primary mt-[3px] text-xs">◆</span>
-                                    <div><span class="text-white font-semibold">AIGC 工作流集成：</span>搭建 ComfyUI
+                                        class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
+                                    <div><strong class="text-on-surface mr-1">AIGC 工作流集成：</strong>搭建 ComfyUI
                                         工作流辅助素材生成，营销素材生产效率提升 <span
-                                            class="text-primary font-bold bg-primary/10 px-1 rounded">200%</span>。独立开发
-                                        PSD 文件批量清洗流程及图片标注平台。</div>
+                                            class="bg-accent-orange-50 border border-accent-orange-100 px-1 font-bold text-accent-orange-700 rounded shadow-sm">200%</span>。独立开发
+                                        PSD 文件批量清洗及图片标注平台。</div>
                                 </li>
                                 <li class="flex items-start gap-2.5"><span
-                                        class="text-primary mt-[3px] text-xs">◆</span>
-                                    <div><span class="text-white font-semibold">多媒体开发：</span>利用 FFmpeg 和 OpenCV 开发
-                                        Python 脚本，批量处理视频转码与图片压缩；开发材质贴图自动整理引擎。</div>
+                                        class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
+                                    <div><strong class="text-on-surface mr-1">多媒体开发：</strong>利用 FFmpeg 和 OpenCV
+                                        开发脚本批量处理视频转码与图片压缩；开发材质贴图自动整理引擎。</div>
                                 </li>
                                 <li class="flex items-start gap-2.5"><span
-                                        class="text-primary mt-[3px] text-xs">◆</span>
-                                    <div><span class="text-white font-semibold">资产库与部署：</span>架构管理 20TB
-                                        级云端资产库，制定核心命名、分类与编目规则；完全负责内部私有服务器的容器化部署。</div>
+                                        class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
+                                    <div><strong class="text-on-surface mr-1">资产库与部署：</strong>架构管理 20TB
+                                        云端资产库，制定核心命名、分类与编目规则；完全负责内部私有服务器容器化部署。</div>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Job 2 -->
-                        <div class="relative">
+                        <div class="relative opacity-90 transition-opacity hover:opacity-100">
                             <div
-                                class="absolute w-2.5 h-2.5 bg-surface-container-highest border-2 border-outline-variant/30 rounded-full -left-[29.5px] sm:-left-[37.5px] top-1">
+                                class="absolute w-4 h-4 bg-surface-container-low rounded-full -left-[33px] sm:-left-[41px] top-1 border-4 border-white flex items-center justify-center">
+                                <div class="w-1.5 h-1.5 bg-outline-variant rounded-full"></div>
                             </div>
+
                             <div class="flex justify-between items-start mb-3 flex-col sm:flex-row sm:items-center">
                                 <div>
-                                    <h4 class="text-lg font-bold text-white leading-tight mb-1 opacity-90">上海捌斤科技游戏有限公司
-                                    </h4>
+                                    <h4 class="text-lg font-black text-on-surface leading-tight mb-2">上海捌斤科技游戏有限公司</h4>
                                     <p
-                                        class="text-[11px] text-secondary tracking-wide font-mono bg-surface-container-highest inline-block px-2 py-0.5 rounded">
+                                        class="text-[11px] text-on-surface-variant font-bold bg-surface-container border border-outline-variant inline-block px-2 py-0.5 rounded shadow-sm">
                                         3D场景模型设计师</p>
                                 </div>
                                 <span
-                                    class="text-secondary opacity-40 text-[10px] font-black uppercase mt-2 sm:mt-0 tracking-widest">2020.06
+                                    class="text-on-surface-variant opacity-60 text-[10px] font-black uppercase mt-2 sm:mt-0 tracking-widest border border-outline-variant px-2.5 py-1 rounded">2020.06
                                     - 2023.02</span>
                             </div>
-                            <ul class="flex flex-col gap-2 mt-2 text-[13px] text-secondary/80 leading-relaxed pl-5">
-                                <li class="flex items-start gap-2.5"><span
-                                        class="text-outline mt-[3px] text-xs opacity-50">■</span>
-                                    <div><span
-                                            class="text-white/80 font-semibold">美术生产：</span>深入把控游戏场景（高模-低模-烘焙-引擎装配）端到端交付管线。
+                            <ul
+                                class="flex flex-col gap-2.5 mt-4 text-[13px] text-on-surface-variant/90 leading-relaxed pl-5">
+                                <li class="flex items-start gap-2"><span
+                                        class="text-outline-variant mt-[4px] text-xs">■</span>
+                                    <div><strong
+                                            class="text-on-surface mr-1">美术生产：</strong>深入把控游戏场景（高模-低模-烘焙-引擎装配）端到端交付管线。
                                     </div>
                                 </li>
-                                <li class="flex items-start gap-2.5"><span
-                                        class="text-outline mt-[3px] text-xs opacity-50">■</span>
-                                    <div><span class="text-white/80 font-semibold">技术协作：</span>作为美术桥梁与 TA
+                                <li class="flex items-start gap-2"><span
+                                        class="text-outline-variant mt-[4px] text-xs">■</span>
+                                    <div><strong class="text-on-surface mr-1">技术协作：</strong>作为美术桥梁与 TA
                                         紧密协同，测试资源工具链消除流程阻断问题。</div>
                                 </li>
-                                <li class="flex items-start gap-2.5"><span
-                                        class="text-outline mt-[3px] text-xs opacity-50">■</span>
-                                    <div><span class="text-white/80 font-semibold">卓越交付：</span>输出高质量模型资源 200+
+                                <li class="flex items-start gap-2"><span
+                                        class="text-outline-variant mt-[4px] text-xs">■</span>
+                                    <div><strong class="text-on-surface mr-1">卓越交付：</strong>输出高质量模型资源 200+
                                         组件级资产，保障极低的引擎开销损耗。</div>
                                 </li>
                             </ul>
@@ -389,39 +426,53 @@
                 </div>
 
                 <!-- Core Projects Experience -->
-                <div class="glass-panel rounded-2xl md:p-8 p-5 shadow-2xl mb-8">
-                    <div class="flex items-center gap-3 mb-8">
-                        <span
-                            class="material-symbols-outlined text-secondary bg-surface-container-highest p-1.5 rounded"
-                            style="font-variation-settings: 'FILL' 1;">terminal</span>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-secondary">专项工程经历</h3>
+                <div class="glass-panel rounded-xl p-8 shadow-sm mb-8 relative overflow-hidden">
+                    <div
+                        class="absolute -right-20 top-20 w-40 h-40 bg-accent-cyan-50 rounded-full blur-3xl pointer-events-none opacity-80">
                     </div>
 
-                    <div class="relative pl-6 sm:pl-8 border-l border-outline-variant/10 flex flex-col gap-10">
+                    <div class="flex items-center gap-3 mb-8 relative z-10">
+                        <div class="p-1.5 bg-accent-cyan-50 text-accent-cyan-700 rounded absolute -left-2">
+                            <span class="material-symbols-outlined block" style="font-size: 18px;">terminal</span>
+                        </div>
+                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-8">专项工程经历</h3>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-accent-cyan-100 flex flex-col gap-10 z-10">
                         <!-- Proj 1 -->
                         <div class="relative">
                             <div
-                                class="absolute w-2 h-2 bg-secondary rounded-full -left-[28.5px] sm:-left-[36.5px] top-1.5 shadow-[0_0_8px_rgba(185,199,219,0.5)]">
+                                class="absolute w-4 h-4 bg-accent-cyan-100 rounded-full -left-[33px] sm:-left-[41px] top-1 border-4 border-white flex items-center justify-center">
+                                <div class="w-1.5 h-1.5 bg-accent-cyan-500 rounded-full"></div>
                             </div>
                             <div class="flex justify-between items-start mb-3 flex-col sm:flex-row sm:items-center">
                                 <div>
-                                    <h4 class="text-base font-bold text-white leading-tight mb-1">多媒体资产自动化处理主干基建</h4>
-                                    <p class="text-[10px] text-secondary tracking-widest uppercase flex gap-2"><span
-                                            class="bg-primary/10 text-primary px-1.5 rounded">独立研发</span><span
-                                            class="bg-surface-container-high px-1.5 rounded text-outline">PYTHON</span><span
-                                            class="bg-surface-container-high px-1.5 rounded text-outline">FFMPEG</span><span
-                                            class="bg-surface-container-high px-1.5 rounded text-outline">API</span></p>
+                                    <h4 class="text-base font-black text-on-surface leading-tight mb-2">多媒体资产自动化处理主干基建
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2 text-[10px] font-bold tracking-widest uppercase">
+                                        <span
+                                            class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-1.5 py-0.5 rounded shadow-sm">独立研发</span>
+                                        <span
+                                            class="bg-surface-container border border-outline-variant text-on-surface-variant px-1.5 py-0.5 rounded">PYTHON</span>
+                                        <span
+                                            class="bg-surface-container border border-outline-variant text-on-surface-variant px-1.5 py-0.5 rounded">FFMPEG</span>
+                                        <span
+                                            class="bg-surface-container border border-outline-variant text-on-surface-variant px-1.5 py-0.5 rounded">API</span>
+                                    </div>
                                 </div>
                             </div>
                             <ul
-                                class="flex flex-col gap-2.5 mt-4 text-[13px] text-secondary leading-relaxed p-5 bg-surface-container-lowest rounded-xl border border-outline-variant/5">
-                                <li class="flex items-start gap-2"><span class="text-primary mt-1 text-[10px]">>></span>
-                                    <div><span class="text-white font-semibold">职责：</span> 守护式脚本侦测网络共享盘路，触发异步处理堆栈；无缝介入
+                                class="flex flex-col gap-3 mt-4 text-[13px] text-on-surface-variant leading-relaxed p-6 bg-surface-container-lowest rounded-xl border border-outline-variant">
+                                <li class="flex items-start gap-2"><span
+                                        class="text-accent-cyan-500 mt-1 text-[10px] font-black uppercase">▶</span>
+                                    <div><strong class="text-on-surface mr-1">职责：</strong> 守护式脚本侦测网络共享盘路，触发异步处理堆栈；无缝介入
                                         FFmpeg 编解码池；并封装至 Web(glTF) 转换系统，终态上云并构建外链字典。</div>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-primary mt-1 text-[10px]">>></span>
-                                    <div><span class="text-white font-semibold">成果：</span> 抹除超 90% 肉身耗时，日均释放集群生产力逾 7.5
-                                        小时。</div>
+                                <li class="flex items-start gap-2"><span
+                                        class="text-accent-cyan-500 mt-1 text-[10px] font-black uppercase">▶</span>
+                                    <div><strong class="text-on-surface mr-1">成果：</strong> 抹除超 <span
+                                            class="text-accent-cyan-700 font-bold">90%</span> 肉身耗时，日均释放集群生产力逾 <span
+                                            class="text-accent-cyan-700 font-bold">7.5 小时</span>。</div>
                                 </li>
                             </ul>
                         </div>
@@ -429,28 +480,33 @@
                         <!-- Proj 2 -->
                         <div class="relative">
                             <div
-                                class="absolute w-2 h-2 bg-secondary rounded-full -left-[28.5px] sm:-left-[36.5px] top-1.5 shadow-[0_0_8px_rgba(185,199,219,0.5)]">
+                                class="absolute w-4 h-4 bg-accent-cyan-100 rounded-full -left-[33px] sm:-left-[41px] top-1 border-4 border-white flex items-center justify-center">
+                                <div class="w-1.5 h-1.5 bg-accent-cyan-500 rounded-full"></div>
                             </div>
                             <div class="flex justify-between items-start mb-3 flex-col sm:flex-row sm:items-center">
                                 <div>
-                                    <h4 class="text-base font-bold text-white leading-tight mb-1">AIGC 分布式智能出图流</h4>
-                                    <p class="text-[10px] text-secondary tracking-widest uppercase flex gap-2"><span
-                                            class="bg-tertiary/10 text-tertiary px-1.5 rounded">架构统筹</span><span
-                                            class="bg-surface-container-high px-1.5 rounded text-outline">SD/COMFYUI</span><span
-                                            class="bg-surface-container-high px-1.5 rounded text-outline">DOCKER</span>
-                                    </p>
+                                    <h4 class="text-base font-black text-on-surface leading-tight mb-2">AIGC 分布式智能出图流
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2 text-[10px] font-bold tracking-widest uppercase">
+                                        <span
+                                            class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-1.5 py-0.5 rounded shadow-sm">架构统筹</span>
+                                        <span
+                                            class="bg-surface-container border border-outline-variant text-on-surface-variant px-1.5 py-0.5 rounded">SD/COMFYUI</span>
+                                        <span
+                                            class="bg-surface-container border border-outline-variant text-on-surface-variant px-1.5 py-0.5 rounded">DOCKER</span>
+                                    </div>
                                 </div>
                             </div>
                             <ul
-                                class="flex flex-col gap-2.5 mt-4 text-[13px] text-secondary leading-relaxed p-5 bg-surface-container-lowest rounded-xl border border-outline-variant/5">
+                                class="flex flex-col gap-3 mt-4 text-[13px] text-on-surface-variant leading-relaxed p-6 bg-surface-container-lowest rounded-xl border border-outline-variant">
                                 <li class="flex items-start gap-2"><span
-                                        class="text-tertiary mt-1 text-[10px]">>></span>
-                                    <div><span class="text-white font-semibold">职责：</span> 节点梳理与逻辑重塑算力底座；解决 Torch
+                                        class="text-accent-cyan-500 mt-1 text-[10px] font-black uppercase">▶</span>
+                                    <div><strong class="text-on-surface mr-1">职责：</strong> 节点梳理与逻辑重塑算力底座；解决 Torch
                                         层依赖碰撞；完成 Docker 和内网物理机双重混合部署，封装提示词字典保障抽卡一致性。</div>
                                 </li>
                                 <li class="flex items-start gap-2"><span
-                                        class="text-tertiary mt-1 text-[10px]">>></span>
-                                    <div><span class="text-white font-semibold">成果：</span>
+                                        class="text-accent-cyan-500 mt-1 text-[10px] font-black uppercase">▶</span>
+                                    <div><strong class="text-on-surface mr-1">成果：</strong>
                                         达成前沿设计能力的自持化与标准化输出生态，成功斩断对外包产能的过度依赖。</div>
                                 </li>
                             </ul>
