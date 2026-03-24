@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>The Monolith | PSD 处理器</title>
+    <title>PSD编目处理器</title>
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
         rel="stylesheet" />
@@ -104,6 +104,23 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #515f74;
         }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
+            opacity: 0;
+        }
     </style>
 </head>
 
@@ -114,7 +131,7 @@
         <header
             class="w-full z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md h-16 flex justify-between items-center px-10 shadow-sm shadow-slate-200/50 dark:shadow-none">
             <div class="flex items-center gap-4">
-                <div class="text-xl font-black tracking-tighter text-black dark:text-white uppercase">The Monolith</div>
+                <div class="text-xl font-black tracking-tighter text-black dark:text-white uppercase">PSD编目处理器</div>
                 <div class="text-[10px] text-secondary font-mono opacity-60">v2.4.0-稳定版</div>
             </div>
             <div class="flex items-center gap-6">
@@ -153,18 +170,19 @@
                                 for automated processing</p>
                         </div>
                     </div>
-                    <button
-                        class="bg-primary text-on-primary px-8 py-3 rounded font-black text-xs uppercase tracking-[0.15em] hover:shadow-xl hover:shadow-primary/20 transition-all active:scale-95">
+                    <button id="btn-demo"
+                        class="bg-primary text-on-primary px-8 py-3 rounded font-black text-xs uppercase tracking-[0.15em] hover:shadow-xl hover:shadow-primary/20 transition-all active:scale-95 flex items-center justify-center">
                         使用演示文件
                     </button>
                 </div>
                 <!-- Quick Stats Mini Card -->
-                <div
-                    class="bg-tertiary-fixed/10 rounded-xl p-8 border border-tertiary-fixed/20 flex flex-col justify-center">
+                <div id="queue-card"
+                    class="bg-tertiary-fixed/10 rounded-xl p-8 border border-tertiary-fixed/20 flex flex-col justify-center transition-colors">
                     <span
                         class="text-[9px] font-black text-on-tertiary-fixed-variant uppercase tracking-[0.2em] mb-2 opacity-70">队列状态</span>
                     <div class="flex items-center gap-3">
-                        <span class="text-3xl font-black text-on-tertiary-fixed-variant tracking-tighter">在线</span>
+                        <span id="queue-status"
+                            class="text-3xl font-black text-on-tertiary-fixed-variant tracking-tighter">在线</span>
                         <div class="flex -space-x-2">
                             <div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-300"></div>
                             <div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-400"></div>
@@ -178,56 +196,64 @@
                     <h3 class="text-[10px] font-black tracking-widest uppercase text-secondary">流水线遥测</h3>
                     <div class="flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
-                        <span class="text-[10px] font-bold text-on-tertiary-fixed-variant uppercase">当前任务:
-                            Job_#8812</span>
+                        <span id="current-job"
+                            class="text-[10px] font-bold text-on-tertiary-fixed-variant uppercase">当前任务: 无活跃任务</span>
                     </div>
                 </div>
                 <div class="flex justify-between relative px-4"><!-- Progress Bar Background -->
                     <div class="absolute top-4 left-4 right-4 h-0.5 bg-surface-container-high z-0"></div>
                     <!-- Progress Bar Active -->
-                    <div class="absolute top-4 left-4 w-[75%] h-0.5 bg-on-tertiary-container z-0"></div>
+                    <div id="progress-bar-active"
+                        class="absolute top-4 left-4 w-[0%] h-0.5 bg-on-tertiary-container z-0 transition-all duration-[1500ms] ease-in-out">
+                    </div>
                     <!-- Step 1 -->
-                    <div class="relative z-10 flex flex-col items-center gap-2">
+                    <div id="step-1" class="relative z-10 flex flex-col items-center gap-2">
                         <div
-                            class="w-8 h-8 rounded-full bg-on-tertiary-container text-on-tertiary flex items-center justify-center">
+                            class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-all duration-500">
                             <span class="material-symbols-outlined text-sm"
                                 style="font-variation-settings: 'FILL' 1;">check</span>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">上传中</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-tight text-on-surface-variant transition-colors">上传中</span>
                     </div>
                     <!-- Step 2 -->
-                    <div class="relative z-10 flex flex-col items-center gap-2">
+                    <div id="step-2" class="relative z-10 flex flex-col items-center gap-2">
                         <div
-                            class="w-8 h-8 rounded-full bg-on-tertiary-container text-on-tertiary flex items-center justify-center">
+                            class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-all duration-500">
                             <span class="material-symbols-outlined text-sm"
                                 style="font-variation-settings: 'FILL' 1;">check</span>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">元数据解析</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-tight text-on-surface-variant transition-colors">元数据解析</span>
                     </div>
                     <!-- Step 3 -->
-                    <div class="relative z-10 flex flex-col items-center gap-2">
+                    <div id="step-3" class="relative z-10 flex flex-col items-center gap-2">
                         <div
-                            class="w-8 h-8 rounded-full bg-on-tertiary-container text-on-tertiary flex items-center justify-center">
+                            class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-all duration-500">
                             <span class="material-symbols-outlined text-sm"
                                 style="font-variation-settings: 'FILL' 1;">check</span>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">预览生成</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-tight text-on-surface-variant transition-colors">预览生成</span>
                     </div>
                     <!-- Step 4 -->
-                    <div class="relative z-10 flex flex-col items-center gap-2">
+                    <div id="step-4" class="relative z-10 flex flex-col items-center gap-2">
                         <div
-                            class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center outline outline-4 outline-surface">
+                            class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-all duration-500 outline outline-4 outline-surface">
                             <span class="material-symbols-outlined text-sm">psychology</span>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface">AI 自动命名</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-tight text-on-surface-variant transition-colors">AI
+                            自动命名</span>
                     </div>
                     <!-- Step 5 -->
-                    <div class="relative z-10 flex flex-col items-center gap-2">
+                    <div id="step-5" class="relative z-10 flex flex-col items-center gap-2">
                         <div
-                            class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+                            class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-all duration-500">
                             <span class="material-symbols-outlined text-sm">database</span>
                         </div>
-                        <span class="text-[10px] font-bold uppercase tracking-tight text-on-surface-variant">JSON
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-tight text-on-surface-variant transition-colors">JSON
                             就绪</span>
                     </div>
                 </div>
@@ -242,26 +268,39 @@
                             <span class="material-symbols-outlined text-secondary">info</span>
                             <h3 class="text-xs font-black tracking-widest uppercase">物理参数</h3>
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
-                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">画布宽度</span>
-                                <span class="text-xl font-black text-on-surface">3840<small
-                                        class="text-xs ml-1 opacity-50">px</small></span>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">画布宽度</span>
+                                <span id="meta-width" class="text-lg font-black text-on-surface">--</span>
                             </div>
-                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
-                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">画布高度</span>
-                                <span class="text-xl font-black text-on-surface">2160<small
-                                        class="text-xs ml-1 opacity-50">px</small></span>
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">画布高度</span>
+                                <span id="meta-height" class="text-lg font-black text-on-surface">--</span>
                             </div>
-                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
-                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">分辨率</span>
-                                <span class="text-xl font-black text-on-surface">300<small
-                                        class="text-xs ml-1 opacity-50">dpi</small></span>
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">分辨率</span>
+                                <span id="meta-dpi" class="text-lg font-black text-on-surface">--</span>
                             </div>
-                            <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant/10">
-                                <span class="text-[10px] font-bold text-secondary uppercase block mb-1">色彩模式</span>
-                                <span class="text-xl font-black text-on-surface">RGBA<small
-                                        class="text-xs ml-1 opacity-50">16b</small></span>
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">色彩模式</span>
+                                <span id="meta-color" class="text-lg font-black text-on-surface">--</span>
+                            </div>
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">色彩配置</span>
+                                <span id="meta-profile" class="text-lg font-black text-on-surface truncate block"
+                                    title="--">--</span>
+                            </div>
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">预估体积</span>
+                                <span id="meta-size" class="text-lg font-black text-on-surface">--</span>
+                            </div>
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">画板数量</span>
+                                <span id="meta-artboards" class="text-lg font-black text-on-surface">--</span>
+                            </div>
+                            <div class="bg-surface-container-lowest p-3 rounded border border-outline-variant/10">
+                                <span class="text-[9px] font-bold text-secondary uppercase block mb-1">文本图层</span>
+                                <span id="meta-texts" class="text-lg font-black text-on-surface">--</span>
                             </div>
                         </div>
                     </div>
@@ -272,23 +311,48 @@
                         <div class="flex items-center gap-3 mb-6 relative z-10">
                             <span class="material-symbols-outlined text-on-tertiary-fixed-variant"
                                 style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-                            <h3 class="text-xs font-black tracking-widest uppercase text-on-tertiary-fixed-variant">AI
-                                智能中心</h3>
+                            <h3 class="text-xs font-black tracking-widest uppercase text-on-tertiary-fixed-variant">
+                                设计语义推断</h3>
                         </div>
                         <div class="bg-white/40 backdrop-blur-sm p-5 rounded-lg border border-white/50 relative z-10">
-                            <div class="flex justify-between items-start mb-2">
+                            <div class="flex justify-between items-start mb-3">
                                 <span
-                                    class="text-[10px] font-black text-on-tertiary-fixed-variant opacity-60 uppercase">建议标题</span>
+                                    class="text-[10px] font-black text-on-tertiary-fixed-variant opacity-60 uppercase">设计语义推断</span>
                                 <span
                                     class="material-symbols-outlined text-sm cursor-pointer hover:text-black transition-colors">edit</span>
                             </div>
-                            <p class="text-lg font-bold tracking-tight text-on-surface leading-tight break-all">
-                                Dark_Aesthetic_Dashboard_Hero_v2_Final</p>
-                            <div class="mt-4 flex gap-2">
-                                <span
-                                    class="bg-tertiary-fixed px-2 py-0.5 rounded-full text-[9px] font-bold uppercase text-on-tertiary-fixed">置信度高</span>
-                                <span
-                                    class="bg-surface-container-highest px-2 py-0.5 rounded-full text-[9px] font-bold uppercase text-secondary">语义匹配</span>
+                            <!-- AI Skeleton Box -->
+                            <div id="ai-skeleton" class="w-full flex-col gap-2 mt-2 flex">
+                                <div class="w-3/4 h-5 bg-slate-200/50 animate-pulse rounded"></div>
+                                <div class="w-full h-3 bg-slate-200/50 animate-pulse rounded mt-2"></div>
+                                <div class="w-5/6 h-3 bg-slate-200/50 animate-pulse rounded"></div>
+                                <div class="flex gap-2 mt-2">
+                                    <div class="w-12 h-4 bg-slate-200/50 animate-pulse rounded-full"></div>
+                                    <div class="w-16 h-4 bg-slate-200/50 animate-pulse rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Real AI Content -->
+                            <div id="ai-content" class="hidden opacity-0 transition-opacity duration-1000">
+                                <p id="ai-title"
+                                    class="text-base font-bold tracking-tight text-on-surface leading-tight break-all mb-2">
+                                    暗黑科技风_数据看板_主视觉_v2_最终编译版</p>
+                                <p id="ai-desc" class="text-[10px] text-secondary leading-relaxed mb-4">
+                                    此视觉体系主打极客深层科技氛围，运用玻璃拟态卡片与荧光冷感高反差配色。其包含定制发光断点折线图，并叠加底层噪点与粒子环境遮罩层，工程图层结构严谨，开发交付可依托
+                                    WebGL 及 Canvas 技术栈复现逼真质感。</p>
+                                <div id="ai-tags" class="flex flex-wrap gap-1.5">
+                                    <span
+                                        class="bg-tertiary-fixed px-1.5 py-0.5 rounded text-[8px] font-bold uppercase text-on-tertiary-fixed">置信度
+                                        98%</span>
+                                    <span
+                                        class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[8px] font-bold uppercase text-secondary">自动分析</span>
+                                    <span
+                                        class="border border-on-tertiary-container/30 text-on-tertiary-container px-1.5 py-0.5 rounded text-[8px] font-bold uppercase">移动竖屏</span>
+                                    <span
+                                        class="border border-on-tertiary-container/30 text-on-tertiary-container px-1.5 py-0.5 rounded text-[8px] font-bold uppercase">深模式
+                                        B端</span>
+                                    <span
+                                        class="border border-on-tertiary-container/30 text-on-tertiary-container px-1.5 py-0.5 rounded text-[8px] font-bold uppercase">玻璃拟态</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -301,53 +365,17 @@
                                 <span class="material-symbols-outlined text-secondary">account_tree</span>
                                 <h3 class="text-xs font-black tracking-widest uppercase">图层层级</h3>
                             </div>
-                            <span
-                                class="text-[10px] font-bold text-on-tertiary-container bg-tertiary-fixed/30 px-2 py-1 rounded">124
+                            <span id="layer-count"
+                                class="text-[10px] font-bold text-on-tertiary-container bg-tertiary-fixed/30 px-2 py-1 rounded">--
                                 个图层</span>
                         </div>
-                        <div class="flex-1 overflow-y-auto p-4 space-y-1">
-                            <div
-                                class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group">
-                                <span class="material-symbols-outlined text-secondary text-sm">folder_open</span>
-                                <span class="text-xs font-semibold flex-1">UI_组件</span>
+                        <div id="layer-tree-container" class="flex-1 overflow-y-auto p-4 space-y-1">
+                            <!-- Empty Initial State -->
+                            <div class="flex flex-col items-center justify-center h-full opacity-50 mt-10">
                                 <span
-                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
-                            </div>
-                            <div
-                                class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group">
-                                <span class="material-symbols-outlined text-secondary text-sm">image</span>
-                                <span class="text-xs font-medium flex-1">背景纹理</span>
-                                <span class="material-symbols-outlined text-xs text-on-tertiary-container"
-                                    style="font-variation-settings: 'FILL' 1;">lock</span>
-                            </div>
-                            <div
-                                class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group">
+                                    class="material-symbols-outlined text-4xl text-outline-variant mb-2">find_in_page</span>
                                 <span
-                                    class="material-symbols-outlined text-on-tertiary-container text-sm">text_fields</span>
-                                <span class="text-xs font-medium flex-1">主页页眉</span>
-                                <span
-                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
-                            </div>
-                            <div
-                                class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group">
-                                <span class="material-symbols-outlined text-secondary text-sm">folder</span>
-                                <span class="text-xs font-semibold flex-1">导航系统</span>
-                                <span
-                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
-                            </div>
-                            <div
-                                class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group">
-                                <span class="material-symbols-outlined text-secondary text-sm">crop_square</span>
-                                <span class="text-xs font-medium flex-1">侧边栏容器</span>
-                                <span
-                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
-                            </div>
-                            <div
-                                class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group">
-                                <span class="material-symbols-outlined text-secondary text-sm">image</span>
-                                <span class="text-xs font-semibold flex-1">页脚最终渲染</span>
-                                <span
-                                    class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
+                                    class="text-[10px] font-bold text-outline-variant uppercase tracking-widest">等待解析</span>
                             </div>
                         </div>
                     </div>
@@ -366,8 +394,15 @@
                                 class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">fullscreen</span>
                         </div>
                         <div class="flex-1 bg-slate-200 relative min-h-[400px]">
-                            <img alt="PSD 构图预览" class="w-full h-full object-cover"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXFAaudDCYVtLWYThON0fAuWLpyK4OtMklq-4-i49mmdI_GiI_QfWFgo-JWClJkYEGuQqXqESPGN1AkRcKQAGsCzOo-NFr14RP7qF0jNlRrP7gnReGRP3Fu1edL6Gd7wWM39lEPRbDc30Ny2lGjO6lqeRqcJtpZn0UniVZUyR2agpFosDhZqCfFLm6wmAHPUHeLLAApx-0c6Czd4JwH1hxTg6ROhtcIP2UITulDS4J5ZBAzbgysm9AxdsK2vCFvhuAFu3v2W9h_vGD" />
+                            <!-- Skeleton loader -->
+                            <div id="preview-skeleton"
+                                class="absolute inset-0 flex items-center justify-center bg-surface-container">
+                                <span class="material-symbols-outlined animate-spin text-outline text-4xl"
+                                    style="animation-duration: 2s;">hourglass_empty</span>
+                            </div>
+                            <img id="preview-image" alt="PSD 构图预览"
+                                class="w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+                                src="file:///C:/Users/Administrator/.gemini/antigravity/brain/ff0d21f5-cf6b-4339-ac30-bbdfeed0fc1f/dark_tech_dashboard_mobile_1774346969273.png" />
                             <!-- Overlay Grid -->
                             <div
                                 class="absolute inset-0 pointer-events-none border-[1px] border-white/10 grid grid-cols-4 grid-rows-4">
@@ -393,7 +428,6 @@
                 </div>
             </div>
         </div>
-        <!-- Footer Action Bar (Sticky) -->
         <footer
             class="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-xl border-t border-outline-variant/20 p-6 flex justify-between items-center z-40">
             <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
@@ -403,7 +437,8 @@
                         <span class="text-sm font-bold font-mono">project_alpha_v2.json</span>
                     </div>
                     <div class="h-8 w-[1px] bg-outline-variant/30 hidden sm:block"></div>
-                    <div class="hidden sm:flex items-center gap-4">
+                    <div id="footer-opts"
+                        class="hidden sm:flex items-center gap-4 opacity-50 pointer-events-none transition-opacity">
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input checked="" class="rounded-sm border-secondary text-primary focus:ring-primary"
                                 type="checkbox" />
@@ -417,10 +452,10 @@
                     </div>
                 </div>
                 <div class="flex gap-4">
-                    <button
-                        class="px-8 py-3 rounded font-black text-xs uppercase tracking-widest text-secondary hover:bg-surface-container-low transition-colors">放弃草案</button>
-                    <button
-                        class="bg-primary text-on-primary px-10 py-3 rounded font-black text-xs uppercase tracking-[0.15em] flex items-center gap-3 hover:shadow-xl hover:shadow-primary/20 transition-all">
+                    <button id="btn-cancel" disabled
+                        class="px-8 py-3 rounded font-black text-xs uppercase tracking-widest text-secondary hover:bg-surface-container-low transition-colors opacity-50 cursor-not-allowed">放弃草案</button>
+                    <button id="btn-save" disabled
+                        class="bg-primary text-on-primary px-10 py-3 rounded font-black text-xs uppercase tracking-[0.15em] flex items-center gap-3 hover:shadow-xl hover:shadow-primary/20 transition-all opacity-50 cursor-not-allowed">
                         <span>保存至 JSON 数据库</span>
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </button>
@@ -428,6 +463,184 @@
             </div>
         </footer>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnDemo = document.getElementById('btn-demo');
+            const queueStatus = document.getElementById('queue-status');
+            const currentJob = document.getElementById('current-job');
+            const progressBar = document.getElementById('progress-bar-active');
+
+            const metaWidth = document.getElementById('meta-width');
+            const metaHeight = document.getElementById('meta-height');
+            const metaDpi = document.getElementById('meta-dpi');
+            const metaColor = document.getElementById('meta-color');
+            const metaProfile = document.getElementById('meta-profile');
+            const metaSize = document.getElementById('meta-size');
+            const metaArtboards = document.getElementById('meta-artboards');
+            const metaTexts = document.getElementById('meta-texts');
+
+            const layerTree = document.getElementById('layer-tree-container');
+            const layerCount = document.getElementById('layer-count');
+
+            const previewImg = document.getElementById('preview-image');
+            const previewSkeleton = document.getElementById('preview-skeleton');
+
+            const aiSkeleton = document.getElementById('ai-skeleton');
+            const aiContent = document.getElementById('ai-content');
+
+            const footerOpts = document.getElementById('footer-opts');
+            const btnCancel = document.getElementById('btn-cancel');
+            const btnSave = document.getElementById('btn-save');
+
+            const steps = [
+                document.getElementById('step-1'),
+                document.getElementById('step-2'),
+                document.getElementById('step-3'),
+                document.getElementById('step-4'),
+                document.getElementById('step-5')
+            ];
+
+            const sleep = ms => new Promise(r => setTimeout(r, ms));
+            // 间隔 5s +- 2s (即 3s ~ 7s)
+            const getRandomDelay = () => Math.floor(Math.random() * 4000) + 3000;
+
+            const activateStep = (stepIndex) => {
+                const stepNode = steps[stepIndex];
+                const iconNode = stepNode.querySelector('div.w-8.h-8');
+                const textNode = stepNode.querySelector('span.text-\\[10px\\]');
+
+                iconNode.className = "w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center transition-all duration-500 shadow-[0_0_15px_rgba(78,222,163,0.5)]";
+                iconNode.innerHTML = `<span class="material-symbols-outlined text-sm">check</span>`;
+
+                textNode.classList.remove('text-on-surface-variant');
+                textNode.classList.add('text-on-surface');
+            };
+
+            btnDemo.addEventListener('click', async () => {
+                // Initialize
+                btnDemo.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2" style="font-size: 16px;">sync</span>处理中...';
+                btnDemo.classList.add('opacity-80', 'pointer-events-none');
+                queueStatus.innerText = '在线处理';
+                currentJob.innerText = '当前任务: Job_#8813';
+
+                // Step 1
+                progressBar.style.width = '12.5%';
+                activateStep(0);
+                steps[0].querySelector('span.text-\\[10px\\]').innerText = "加载中";
+
+                await sleep(getRandomDelay());
+
+                // Step 2
+                progressBar.style.width = '37.5%';
+                activateStep(1);
+
+                metaWidth.innerHTML = '1080<small class="text-xs ml-1 opacity-50">px</small>';
+                metaHeight.innerHTML = '1920<small class="text-xs ml-1 opacity-50">px</small>';
+                metaDpi.innerHTML = '300<small class="text-xs ml-1 opacity-50">dpi</small>';
+                metaColor.innerHTML = 'RGBA<small class="text-xs ml-1 opacity-50">16b</small>';
+                metaProfile.innerHTML = 'Display-P3';
+                metaProfile.setAttribute('title', 'Display-P3');
+                metaSize.innerHTML = '94.2<small class="text-xs ml-1 opacity-50">MB</small>';
+                metaArtboards.innerHTML = '1<small class="text-xs ml-1 opacity-50">组</small>';
+                metaTexts.innerHTML = '28<small class="text-xs ml-1 opacity-50">层</small>';
+
+                layerCount.innerText = '124 个图层';
+                layerTree.innerHTML = `
+                    <div class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.1s">
+                        <span class="material-symbols-outlined text-secondary text-sm">folder_open</span>
+                        <span class="text-xs font-semibold flex-1">主视觉界面容器</span>
+                        <span class="material-symbols-outlined text-xs text-secondary opacity-0 group-hover:opacity-100">visibility</span>
+                    </div>
+                    <div class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.15s">
+                        <span class="material-symbols-outlined text-secondary text-sm">folder_open</span>
+                        <span class="text-xs font-semibold flex-1">全局导航系统</span>
+                    </div>
+                    <div class="ml-12 flex items-center gap-3 p-2 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.2s">
+                        <span class="material-symbols-outlined text-on-tertiary-container text-sm">text_fields</span>
+                        <span class="text-xs font-medium flex-1">企业Logo文本</span>
+                    </div>
+                    <div class="ml-12 flex items-center gap-3 p-2 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.25s">
+                        <span class="material-symbols-outlined text-secondary text-sm">smart_button</span>
+                        <span class="text-xs font-medium flex-1">操作栏_注册登录组件</span>
+                    </div>
+                    <div class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.3s">
+                        <span class="material-symbols-outlined text-secondary text-sm">folder</span>
+                        <span class="text-xs font-semibold flex-1">核心数据看版图表</span>
+                    </div>
+                    <div class="ml-12 flex items-center gap-3 p-2 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.35s">
+                        <span class="material-symbols-outlined text-secondary text-sm">insert_chart</span>
+                        <span class="text-xs font-medium flex-1">月度营收曲线走势图</span>
+                    </div>
+                    <div class="ml-12 flex items-center gap-3 p-2 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.4s">
+                        <span class="material-symbols-outlined text-secondary text-sm">pie_chart</span>
+                        <span class="text-xs font-medium flex-1">环形用户分布统计</span>
+                    </div>
+                    <div class="ml-12 flex items-center gap-3 p-2 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.45s">
+                        <span class="material-symbols-outlined text-secondary text-sm">image</span>
+                        <span class="text-xs font-medium flex-1">渐变流光粒子特效底图</span>
+                        <span class="material-symbols-outlined text-xs text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">lock</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded hover:bg-white transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.5s">
+                        <span class="material-symbols-outlined text-secondary text-sm">folder</span>
+                        <span class="text-xs font-semibold flex-1">底层遮罩与基底</span>
+                    </div>
+                    <div class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.55s">
+                        <span class="material-symbols-outlined text-secondary text-sm">crop_square</span>
+                        <span class="text-xs font-medium flex-1">环境阴影叠加层 (#000000 40%)</span>
+                    </div>
+                    <div class="ml-6 flex items-center gap-3 p-2.5 bg-transparent border-l-2 border-outline-variant/30 hover:bg-white/50 rounded-r transition-colors cursor-pointer group animate-fade-in" style="animation-delay: 0.6s">
+                        <span class="material-symbols-outlined text-secondary text-sm">image</span>
+                        <span class="text-xs font-medium flex-1">暗黑网格纹理底板</span>
+                        <span class="material-symbols-outlined text-xs text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">lock</span>
+                    </div>
+                `;
+
+                await sleep(getRandomDelay());
+
+                // Step 3
+                progressBar.style.width = '62.5%';
+                activateStep(2);
+
+                previewSkeleton.classList.add('hidden');
+                previewImg.classList.remove('opacity-0');
+
+                await sleep(getRandomDelay());
+
+                // Step 4
+                progressBar.style.width = '87.5%';
+                activateStep(3);
+
+                aiSkeleton.classList.add('hidden');
+                aiContent.classList.remove('hidden', 'opacity-0');
+
+                const layerNodes = layerTree.querySelectorAll('.text-xs.font-medium, .text-xs.font-semibold');
+                layerNodes.forEach((node, i) => {
+                    setTimeout(() => {
+                        node.classList.add('text-tertiary-fixed', 'transition-colors');
+                        setTimeout(() => node.classList.remove('text-tertiary-fixed'), 400);
+                    }, i * 300);
+                });
+
+                await sleep(getRandomDelay());
+
+                // Step 5
+                progressBar.style.width = '100%';
+                activateStep(4);
+
+                queueStatus.innerText = '等待中';
+                btnDemo.innerHTML = '演示完毕';
+                currentJob.innerText = '当前任务: 无活跃任务';
+
+                footerOpts.classList.remove('opacity-50', 'pointer-events-none');
+                btnCancel.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnCancel.removeAttribute('disabled');
+
+                btnSave.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnSave.removeAttribute('disabled');
+                btnSave.classList.add('cursor-pointer');
+            });
+        });
+    </script>
 </body>
 
 </html>
