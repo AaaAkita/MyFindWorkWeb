@@ -85,16 +85,15 @@
     <div class="max-w-7xl mx-auto relative z-10">
         <!-- Header / Nav -->
         <header
-            class="w-full mb-8 flex justify-between items-center px-4 bg-surface-container-lowest/80 backdrop-blur-md h-16 rounded-xl border border-outline-variant shadow-sm">
-            <div class="flex items-center gap-4">
+            class="w-full mb-8 flex items-center gap-4 px-4 bg-surface-container-lowest/80 backdrop-blur-md h-16 rounded-xl border border-outline-variant shadow-sm">
+            <div class="flex items-center gap-4 shrink-0">
                 <div class="text-xl font-black tracking-tighter text-on-surface uppercase">王宏凯的简历</div>
-                <div class="text-[10px] text-on-surface-variant font-mono opacity-60">v3.1-LOW_SAT_COLORS</div>
             </div>
-            <div class="flex items-center gap-4">
-                <a href="../PSD.html"
-                    class="flex items-center gap-2 hover:bg-surface-container px-3 py-1.5 rounded transition-colors text-xs font-bold text-on-surface-variant border border-outline-variant">
-                    <span class="material-symbols-outlined text-sm">dashboard</span> 查看 PSD 处理器
-                </a>
+            <div class="flex-1 min-w-0">
+                <div
+                    class="bg-accent-blue-50/70 border border-accent-blue-100 rounded px-3 py-1.5 text-[11px] text-on-surface-variant leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis">
+                    核心价值：把美术生产流程工程化与自动化落地，稳定提效并降低重复人力投入。
+                </div>
             </div>
         </header>
 
@@ -115,13 +114,13 @@
                             <span class="material-symbols-outlined text-4xl mb-1">person</span>
                             <span class="text-[8px] tracking-widest uppercase opacity-80">Photo ID</span>
                         </div>
-                        <div class="flex flex-col gap-1">
-                            <h1 class="text-3xl font-black tracking-tight text-on-surface mb-2">王宏凯</h1>
-                            <p
-                                class="text-[11px] font-bold text-accent-blue-700 uppercase bg-accent-blue-50 border border-accent-blue-100 w-fit px-2 py-0.5 rounded">
-                                AIGC 工作流工程师</p>
-                            <p class="text-[10px] text-on-surface-variant font-bold uppercase mt-1">技术美术 (TA)</p>
-                            <p class="text-[10px] text-on-surface-variant font-bold uppercase">数字内容自动化工程师</p>
+                        <div class="flex flex-col gap-2">
+                            <h1 class="text-3xl font-black tracking-tight text-on-surface">王宏凯</h1>
+                            <div class="flex flex-col gap-1">
+                                <p class="text-base font-extrabold text-accent-blue-700 leading-[1.25]">AIGC 工作流工程师</p>
+                                <p class="text-base font-extrabold text-accent-blue-700 leading-[1.25]">技术美术 (TA)</p>
+                                <p class="text-base font-extrabold text-accent-blue-700 leading-[1.25]">数字内容自动化工程师</p>
+                            </div>
                         </div>
                     </div>
 
@@ -161,7 +160,7 @@
                     <div class="flex items-center gap-3 mb-6 relative">
                         <div class="p-1.5 bg-accent-orange-50 text-accent-orange-700 rounded absolute -left-2"><span
                                 class="material-symbols-outlined block" style="font-size: 16px;">folder_zip</span></div>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-7">代码仓库 / 作品集</h3>
+                        <h3 class="text-lg font-extrabold tracking-tight text-on-surface ml-7">代码仓库 / 作品集</h3>
                     </div>
                     <div class="flex flex-col gap-2">
                         <a href="https://github.com/AaaAkita/Wplayer" target="_blank"
@@ -212,31 +211,47 @@
                     <div class="flex items-center gap-3 mb-6 relative">
                         <div class="p-1.5 bg-accent-cyan-50 text-accent-cyan-700 rounded absolute -left-2"><span
                                 class="material-symbols-outlined block" style="font-size: 16px;">memory</span></div>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-7">技能清单</h3>
+                        <h3 class="text-lg font-extrabold tracking-tight text-on-surface ml-7">技能矩阵</h3>
                     </div>
-                    <div class="flex flex-wrap gap-2 relative z-10">
-                        <!-- Blue Theme elements -->
-                        <span
-                            class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">Python
-                            开发</span>
-                        <span
-                            class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">前端框架/交互</span>
-                        <span
-                            class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">数据库管理</span>
-                        <!-- Orange Theme elements -->
-                        <span
-                            class="bg-accent-orange-50 border border-accent-orange-100 text-accent-orange-700 px-2.5 py-1 rounded text-xs font-bold leading-none">Docker
-                            部署</span>
-                        <span
-                            class="bg-accent-orange-50 border border-accent-orange-100 text-accent-orange-700 px-2.5 py-1 rounded text-xs font-bold leading-none">OSS
-                            / Shell</span>
-                        <!-- Cyan Theme elements -->
-                        <span
-                            class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-2.5 py-1 rounded text-xs font-bold leading-none">FFmpeg
-                            / OpenCV</span>
-                        <span
-                            class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-2.5 py-1 rounded text-xs font-bold leading-none">3D
-                            资产标准化</span>
+                    <div class="flex flex-col gap-3.5 relative z-10">
+                        <div>
+                            <p class="text-[10px] font-black tracking-widest uppercase text-accent-blue-700 mb-2">核心技能</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">Python
+                                    自动化开发</span>
+                                <span
+                                    class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">FFmpeg
+                                    / OpenCV</span>
+                                <span
+                                    class="bg-accent-blue-50 border border-accent-blue-100 text-accent-blue-700 px-2.5 py-1 rounded text-xs font-bold leading-none">ComfyUI
+                                    / SD 工作流</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-black tracking-widest uppercase text-accent-orange-700 mb-2">工程化能力</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="bg-accent-orange-50 border border-accent-orange-100 text-accent-orange-700 px-2.5 py-1 rounded text-xs font-bold leading-none">Docker
+                                    部署</span>
+                                <span
+                                    class="bg-accent-orange-50 border border-accent-orange-100 text-accent-orange-700 px-2.5 py-1 rounded text-xs font-bold leading-none">OSS
+                                    / Shell</span>
+                                <span
+                                    class="bg-accent-orange-50 border border-accent-orange-100 text-accent-orange-700 px-2.5 py-1 rounded text-xs font-bold leading-none">资源管线搭建</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-black tracking-widest uppercase text-accent-cyan-700 mb-2">业务协同能力</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-2.5 py-1 rounded text-xs font-bold leading-none">技术美术协同</span>
+                                <span
+                                    class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-2.5 py-1 rounded text-xs font-bold leading-none">多媒体资产标准化</span>
+                                <span
+                                    class="bg-accent-cyan-50 border border-accent-cyan-100 text-accent-cyan-700 px-2.5 py-1 rounded text-xs font-bold leading-none">跨团队需求落地</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -246,7 +261,7 @@
                         <div class="p-1.5 bg-surface-container px-2 pb-1 rounded absolute -left-2"><span
                                 class="material-symbols-outlined block text-on-surface-variant"
                                 style="font-size: 16px;">build</span></div>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-9">生产工具库</h3>
+                        <h3 class="text-lg font-extrabold tracking-tight text-on-surface ml-9">生产工具库</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <span
@@ -277,7 +292,7 @@
                         <div class="p-1.5 bg-surface-container px-2 pb-1 rounded absolute -left-2"><span
                                 class="material-symbols-outlined block text-on-surface-variant"
                                 style="font-size: 16px;">school</span></div>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-9">教育背景</h3>
+                        <h3 class="text-lg font-extrabold tracking-tight text-on-surface ml-9">教育背景</h3>
                     </div>
                     <div
                         class="bg-surface-container-low p-4 rounded-xl border border-outline-variant flex flex-col gap-1 hover:border-accent-cyan-300 transition-colors">
@@ -306,23 +321,17 @@
                         <div class="p-1.5 bg-accent-blue-50 text-accent-blue-700 rounded absolute -left-2">
                             <span class="material-symbols-outlined block" style="font-size: 18px;">psychology</span>
                         </div>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-8">个人总结</h3>
+                        <h3 class="text-lg font-extrabold tracking-tight text-on-surface ml-8">个人总结</h3>
                     </div>
                     <ul class="flex flex-col gap-5 text-sm text-on-surface-variant leading-relaxed relative z-10">
                         <li class="pl-4 border-l-2 border-accent-blue-300"><span
-                                class="text-on-surface font-black mr-1">复合背景：</span> 5 年数字内容生产经验，具备"美术生产流程 + 自动化开发 + AI
-                            应用"的复合能力。深刻理解 3D 模型、图片、视频的生产痛点，能通过技术手段解决效率问题。</li>
-                        <li class="pl-4 border-l-2 border-accent-blue-300"><span
-                                class="text-on-surface font-black mr-1">技术赋能：</span> 熟练掌握 Python 脚本开发，独立编写自动化处理工具；熟悉 AI
-                            绘画/视频工作流（ComfyUI/SD/即梦/SeedDance），具备 AI 项目部署与调试能力。</li>
+                                class="text-on-surface font-black mr-1">岗位定位：</span>聚焦 AIGC 流程工程师 / 技术美术 TA（自动化方向），负责把美术生产流程从“人工串联”升级为“可复用工程链路”。</li>
                         <li class="pl-4 border-l-2 border-accent-blue-500"><span
-                                class="text-on-surface font-black mr-1">效能提升：</span> 擅长搭建多媒体资产处理管线，曾通过自动化脚本将资源入库效率提升
-                            <span
-                                class="text-accent-blue-700 font-bold px-1.5 py-0.5 bg-accent-blue-50 border border-accent-blue-100 rounded ml-0.5 mr-0.5 shadow-sm">90%</span>，显著降低人工重复劳动。
-                        </li>
+                                class="text-on-surface font-black mr-1">关键结果：</span>在现岗位独立搭建自动上传与处理链路，单批素材入库由 <span
+                                class="text-accent-blue-700 font-bold px-1.5 py-0.5 bg-accent-blue-50 border border-accent-blue-100 rounded ml-0.5 mr-0.5 shadow-sm">12小时降至3小时</span>，营销素材生产效率提升 <span
+                                class="text-accent-blue-700 font-bold px-1.5 py-0.5 bg-accent-blue-50 border border-accent-blue-100 rounded ml-0.5 mr-0.5 shadow-sm">200%</span>。</li>
                         <li class="pl-4 border-l-2 border-accent-blue-300"><span
-                                class="text-on-surface font-black mr-1">持续学习：</span> 保持对前沿技术的敏感度，持续学习 AI
-                            新技术与新工具，快速将新技术转化为实际生产力，推动团队技术能力升级。</li>
+                                class="text-on-surface font-black mr-1">交付能力：</span>可独立完成 Python 自动化、ComfyUI/SD 流程、FFmpeg/OpenCV 批处理与 Docker 部署，覆盖“方案设计-开发实现-上线维护”完整闭环。</li>
                     </ul>
                 </div>
 
@@ -332,7 +341,7 @@
                         <div class="p-1.5 bg-accent-orange-50 text-accent-orange-700 rounded absolute -left-2">
                             <span class="material-symbols-outlined block" style="font-size: 18px;">domain</span>
                         </div>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-8">工作经历</h3>
+                        <h3 class="text-lg font-extrabold tracking-tight text-on-surface ml-8">工作经历</h3>
                     </div>
 
                     <div class="relative pl-6 sm:pl-8 border-l-2 border-accent-orange-100 flex flex-col gap-10">
@@ -360,26 +369,26 @@
                                 <li class="flex items-start gap-2.5"><span
                                         class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
                                     <div><strong class="text-on-surface mr-1">资产管线自动化：</strong>独立开发 Python
-                                        自动上传脚本，对接资源管理系统，实现模型/素材一键上传与元数据自动填写，效率从 <span
+                                        自动上传脚本并对接资源管理系统，实现模型/素材一键上传与元数据自动回填。处理效率从 <span
                                             class="bg-accent-orange-50 border border-accent-orange-100 px-1 font-bold text-accent-orange-700 rounded shadow-sm">12小时/批
                                             降至 3小时/批</span>。</div>
                                 </li>
                                 <li class="flex items-start gap-2.5"><span
                                         class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
                                     <div><strong class="text-on-surface mr-1">AIGC 工作流集成：</strong>搭建 ComfyUI
-                                        工作流辅助素材生成，营销素材生产效率提升 <span
+                                        工作流辅助素材生成，并打通 PSD 批量清洗与图片标注流程。营销素材生产效率提升 <span
                                             class="bg-accent-orange-50 border border-accent-orange-100 px-1 font-bold text-accent-orange-700 rounded shadow-sm">200%</span>。独立开发
-                                        PSD 文件批量清洗及图片标注平台。</div>
+                                        并上线 PSD 文件批量清洗及图片标注平台。</div>
                                 </li>
                                 <li class="flex items-start gap-2.5"><span
                                         class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
                                     <div><strong class="text-on-surface mr-1">多媒体开发：</strong>利用 FFmpeg 和 OpenCV
-                                        开发脚本批量处理视频转码与图片压缩；开发材质贴图自动整理引擎。</div>
+                                        开发脚本，批量处理视频转码与图片压缩；并实现材质贴图自动整理。</div>
                                 </li>
                                 <li class="flex items-start gap-2.5"><span
                                         class="text-accent-orange-500 mt-[3px] text-[10px] font-black">◆</span>
                                     <div><strong class="text-on-surface mr-1">资产库与部署：</strong>架构管理 20TB
-                                        云端资产库，制定核心命名、分类与编目规则；完全负责内部私有服务器容器化部署。</div>
+                                        云端资产库，制定命名、分类与编目规则；并负责内部私有服务器容器化部署。</div>
                                 </li>
                             </ul>
                         </div>
@@ -407,18 +416,18 @@
                                 <li class="flex items-start gap-2"><span
                                         class="text-outline-variant mt-[4px] text-xs">■</span>
                                     <div><strong
-                                            class="text-on-surface mr-1">美术生产：</strong>深入把控游戏场景（高模-低模-烘焙-引擎装配）端到端交付管线。
+                                            class="text-on-surface mr-1">美术生产：</strong>负责游戏场景端到端生产（高模-低模-烘焙-引擎装配），保障版本稳定交付。
                                     </div>
                                 </li>
                                 <li class="flex items-start gap-2"><span
                                         class="text-outline-variant mt-[4px] text-xs">■</span>
                                     <div><strong class="text-on-surface mr-1">技术协作：</strong>作为美术桥梁与 TA
-                                        紧密协同，测试资源工具链消除流程阻断问题。</div>
+                                        紧密协同，测试并优化资源工具链，消除流程阻断点。</div>
                                 </li>
                                 <li class="flex items-start gap-2"><span
                                         class="text-outline-variant mt-[4px] text-xs">■</span>
                                     <div><strong class="text-on-surface mr-1">卓越交付：</strong>输出高质量模型资源 200+
-                                        组件级资产，保障极低的引擎开销损耗。</div>
+                                        组件级资产，在保证质量的同时控制引擎开销。</div>
                                 </li>
                             </ul>
                         </div>
@@ -435,7 +444,7 @@
                         <div class="p-1.5 bg-accent-cyan-50 text-accent-cyan-700 rounded absolute -left-2">
                             <span class="material-symbols-outlined block" style="font-size: 18px;">terminal</span>
                         </div>
-                        <h3 class="text-xs font-black tracking-widest uppercase text-on-surface ml-8">专项工程经历</h3>
+                        <h3 class="text-lg font-extrabold tracking-tight text-on-surface ml-8">专项工程经历</h3>
                     </div>
 
                     <div class="relative pl-6 sm:pl-8 border-l-2 border-accent-cyan-100 flex flex-col gap-10 z-10">
